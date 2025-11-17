@@ -2,35 +2,37 @@
     "navigation": {
         "home": "Home",
         "services": "Services",
-        "about": "About",
+        "portfolio": "Portfolio",
+        "freeConsultation": "Free Consultation",
         "contact": "Contact"
     },
-    "hero": {
-        "title": "Capture attention, inspire action",
-        "subtitle": "Professional web development and IT services tailored to your needs",
-        "ourServices": "Our Services",
-        "getInTouch": "Get in Touch"
-    },
     "services": {
-        "title": "Our Services",
-        "responsiveWebsites": "Responsive Websites",
-        "responsiveWebsitesDesc": "Modern, mobile-first websites that work perfectly on all devices.",
+        "title": "Our Web Development & IT Services",
+        "responsiveWebsites": "Responsive Web Development",
+        "responsiveWebsitesDesc": "Modern, mobile-first websites that work perfectly on all devices...",
         "seoOptimization": "SEO Optimization",
-        "seoOptimizationDesc": "Improve your search engine rankings and increase online visibility.",
-        "logoDesign": "Logo Design",
-        "logoDesignDesc": "Unique and memorable logos that represent your brand identity.",
+        "seoOptimizationDesc": "Improve your search engine rankings and increase online visibility...",
+        "logoDesign": "Logo & Brand Design",
+        "logoDesignDesc": "Unique and memorable logos that represent your brand identity...",
         "customDevelopment": "Custom Development",
-        "customDevelopmentDesc": "JavaScript, C#, .NET, React applications tailored to your requirements.",
-        "mobileCleanup": "Mobile Phone Data Cleanup",
-        "mobileCleanupDesc": "Optimize and clean your mobile device for better performance.",
+        "customDevelopmentDesc": "JavaScript, C#, .NET, React applications tailored to your requirements...",
+        "mobileCleanup": "Mobile Phone Optimization",
+        "mobileCleanupDesc": "Optimize and clean your mobile device for better performance...",
         "osInstallation": "OS Installation & Setup",
-        "osInstallationDesc": "Professional operating system installation and configuration.",
+        "osInstallationDesc": "Professional operating system installation and configuration...",
         "pcCleanup": "PC Data & Virus Cleanup",
-        "pcCleanupDesc": "Remove viruses and optimize your computer for peak performance."
+        "pcCleanupDesc": "Remove viruses and optimize your computer for peak performance..."
+    },
+    "hero": {
+        "titleLine1": "Capture attention,",
+        "titleLine2": "inspire action",
+        "subtitle": "Professional web development and IT services tailored to your needs in <strong>Sisak, Croatia</strong>. We create responsive websites, optimize for search engines, and provide comprehensive IT solutions.",
+        "portfolio": "Portfolio",
+        "getQuote": "Get Free Quote"
     },
     "about": {
-        "title": "About Lemgenda",
-        "text1": "Lemgenda is a comprehensive digital solutions provider based in Sisak, Croatia, founded and operated by Lem Treursić. We specialize in transforming businesses through cutting-edge technology and creative digital solutions that drive real results.",
+        "title": "About Lemgenda Web Development",
+        "text1": "Lemgenda is a comprehensive digital solutions provider based in <strong>Sisak, Croatia</strong>, founded and operated by Lem Treursić. We specialize in transforming businesses through cutting-edge technology and creative digital solutions that drive real results.",
         "text2": "With years of experience in the industry, we understand that every business has unique challenges and opportunities. That's why we take a personalized approach to each project, ensuring that our solutions align perfectly with your business objectives and target audience.",
         "servicesOverview": "Our Comprehensive Service Approach",
         "customWebDev": "Custom Web Development",
@@ -43,35 +45,39 @@
         "completeItDesc": "From PC maintenance and virus removal to operating system installations and mobile device optimization, we provide comprehensive IT support to keep your technology running smoothly and securely.",
         "commitment": "Our Commitment to Excellence",
         "commitmentText": "At Lemgenda, we believe in building long-term partnerships with our clients. We're committed to delivering not just projects, but solutions that grow with your business. Our team stays current with the latest industry trends and technologies to ensure you always receive modern, effective solutions.",
-        "resultsDriven": "Results-Driven",
-        "resultsDrivenDesc": "We focus on delivering measurable results that contribute to your business success",
+        "resultsDriven": "Results Driven",
+        "resultsDrivenDesc": "Our focus is on delivering measurable results that drive your business forward.",
         "timelyDelivery": "Timely Delivery",
-        "timelyDeliveryDesc": "We respect deadlines and ensure projects are completed on time without compromising quality",
+        "timelyDeliveryDesc": "We respect deadlines and ensure your project is completed on time.",
         "ongoingSupport": "Ongoing Support",
-        "ongoingSupportDesc": "Our relationship continues after project completion with reliable maintenance and support",
-        "address": "Address",
-        "phone": "Phone",
-        "email": "Email",
+        "ongoingSupportDesc": "We provide continuous support and maintenance to ensure long-term success.",
         "ownerName": "Lem Treursić",
         "ownerTitle": "Founder & Lead Developer",
         "ownerEmail": "lemgenda.obrt@gmail.com",
         "ownerPhone": "+385 95 383 1325"
     },
     "contact": {
-        "title": "Get In Touch",
+        "title": "Contact Lemgenda for Web Development Services",
         "info": "Contact Information",
-        "text": "Ready to start your project? Get in touch with us today!",
+        "text": "Ready to start your web development project? Get in touch with us today for a free consultation!",
         "address": "Address",
         "phone": "Phone",
         "email": "Email",
         "name": "Name",
         "subject": "Subject",
         "message": "Message",
-        "sendMessage": "Send Message"
+        "sendMessage": "Send Message",
+        "success": "Thank you for your message! We'll get back to you soon.",
+        "faq1": "How long does it take to get a response to an inquiry?",
+        "faq1answer": "We respond to all inquiries within 24 hours on business days. Urgent inquiries may receive a response even faster.",
+        "faq2": "Do you offer free consultations?",
+        "faq2answer": "Yes, we offer free initial consultations via phone, email, or video call to understand your needs.",
+        "faq3": "Do you work with clients outside of Sisak?",
+        "faq3answer": "Absolutely! We work with clients throughout Croatia and via online collaboration. Most of our services can be performed completely online."
     },
     "footer": {
         "quickLinks": "Quick Links",
-        "copyright": "© 2025 Lemgenda. All rights reserved."
+        "copyright": "© 2025 Lemgenda - Web Development & IT Services. All rights reserved."
     },
     "cookie": {
         "title": "Cookie Consent",
@@ -87,18 +93,52 @@
         "accepted": "Cookie preferences saved!",
         "customized": "Cookie preferences customized!"
     },
+    "testimonials": {
+        "title": "What Our Clients Say"
+    },
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "q1": "How long does it take to build a website?",
+        "a1": "The time required varies depending on project complexity. Simple websites can be completed in 2-3 weeks, while more complex projects may take 6-8 weeks. We provide precise time estimates during consultations.",
+        "q2": "Do you offer SEO services?",
+        "a2": "Yes, we provide complete SEO services including technical SEO optimization, content optimization, loading speed, and local SEO. Our goal is to improve your visibility in search results.",
+        "q3": "Can you work with existing websites?",
+        "a3": "Absolutely! We provide upgrade, maintenance, and optimization services for existing websites. We can work with various platforms and technologies.",
+        "q4": "How much does website development cost?",
+        "a4": "Prices depend on project complexity, features, and design. We offer free consultations to understand your needs and provide an accurate quote.",
+        "q5": "Do you offer support after project completion?",
+        "a5": "Yes, we offer various support and maintenance packages to ensure the long-term success of your website."
+    },
+    "trust": {
+        "satisfiedClients": "Satisfied Clients",
+        "completedProjects": "Completed Projects",
+        "yearsExperience": "Years Experience",
+        "support": "Support"
+    },
     "newsletter": {
-        "title": "Stay Updated!",
-        "subtitle": "Get the latest news about web development trends and exclusive offers.",
+        "title": "Stay Informed!",
+        "subtitle": "Receive the latest web development trends and exclusive offers.",
         "name": "Name",
         "email": "Email Address *",
-        "privacy": "I agree to the privacy policy and terms of service",
-        "subscribe": "Subscribe Now",
+        "privacy": "I agree to the privacy policy and terms of use",
+        "subscribe": "Subscribe",
         "submitting": "Subscribing...",
         "success": "Thank you for subscribing!",
         "error": "Subscription failed. Please try again.",
         "emailRequired": "Email address is required",
         "invalidEmail": "Please enter a valid email address",
         "privacyRequired": "You must agree to the privacy policy"
+    },
+    "privacy": {
+        "title": "Privacy Policy",
+        "description": "Privacy Policy for Lemgenda Web Development. Learn how we collect, use, and protect your personal information in compliance with GDPR.",
+        "lastUpdated": "Last updated: December 2024",
+        "content": "<h2>1. Information We Collect</h2><p>We collect information that you provide directly to us, including:</p><ul><li>Name and contact information (email, phone number)</li><li>Company information</li><li>Project requirements and specifications</li><li>Communication records</li><li>Website usage data through cookies</li></ul><h2>2. How We Use Your Information</h2><p>We use the information we collect to:</p><ul><li>Provide and maintain our services</li><li>Process your requests and projects</li><li>Send technical notices and support messages</li><li>Respond to your comments and questions</li><li>Improve our website and services</li><li>Send marketing communications (with your consent)</li></ul><h2>3. Data Sharing and Disclosure</h2><p>We do not sell or rent your personal information. We may share information with:</p><ul><li>Service providers who assist in our operations</li><li>Professional advisors (lawyers, accountants)</li><li>Law enforcement when required by law</li></ul><h2>4. Data Retention</h2><p>We retain your personal information only for as long as necessary to fulfill the purposes outlined in this policy.</p><h2>5. Your Rights Under GDPR</h2><p>Under GDPR, you have the right to:</p><ul><li>Access your personal data</li><li>Correct inaccurate data</li><li>Request deletion of your data</li><li>Restrict or object to processing</li><li>Data portability</li><li>Withdraw consent</li></ul><h2>6. Cookies and Tracking</h2><p>We use cookies to improve your browsing experience. You can control cookies through your browser settings.</p><h2>7. Data Security</h2><p>We implement appropriate security measures to protect your personal information.</p><h2>8. International Data Transfers</h2><p>Your data may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place.</p><h2>9. Children's Privacy</h2><p>Our services are not directed to individuals under 16. We do not knowingly collect personal information from children.</p><h2>10. Changes to This Policy</h2><p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy on this page.</p><h2>11. Contact Us</h2><p>For privacy-related questions, contact us at:</p><p>Email: lemgenda.obrt@gmail.com<br>Phone: +385 95 383 1325</p>"
+    },
+    "terms": {
+        "title": "Terms of Service",
+        "description": "Terms of Service for Lemgenda Web Development. Learn about our service agreements, project terms, and client responsibilities.",
+        "lastUpdated": "Last updated: December 2024",
+        "content": "<h2>1. Acceptance of Terms</h2><p>By accessing and using Lemgenda's services, you accept and agree to be bound by these Terms of Service.</p><h2>2. Services Provided</h2><p>Lemgenda provides web development, SEO optimization, logo design, and IT services as described on our website.</p><h2>3. Project Terms</h2><ul><li>All projects require a signed agreement</li><li>Payment terms are specified in individual project contracts</li><li>Client is responsible for providing necessary materials and feedback in a timely manner</li><li>Project timelines are estimates and may vary based on client responsiveness</li></ul><h2>4. Intellectual Property</h2><p>Upon full payment, clients receive full ownership of the delivered work, excluding third-party components.</p><h2>5. Payment Terms</h2><ul><li>50% deposit required to begin work</li><li>Balance due upon project completion</li><li>Late payments may incur interest charges</li></ul><h2>6. Confidentiality</h2><p>Both parties agree to maintain the confidentiality of proprietary information.</p><h2>7. Limitation of Liability</h2><p>Lemgenda's liability is limited to the amount paid for services.</p><h2>8. Termination</h2><p>Either party may terminate services with written notice.</p><h2>9. Governing Law</h2><p>These terms are governed by the laws of Croatia.</p><h2>10. Changes to Terms</h2><p>We reserve the right to modify these terms at any time. Continued use of our services constitutes acceptance of changes.</p><h2>11. Contact Information</h2><p>Lemgenda<br>Ulica Jurja Križanića 6<br>44000 Sisak, Croatia<br>Email: lemgenda.obrt@gmail.com<br>Phone: +385 95 383 1325</p>"
     }
 }
