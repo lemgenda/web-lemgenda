@@ -722,8 +722,8 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-Performance & Optimization Features
-1. Service Worker
+## Performance & Optimization Features
+### 1. Service Worker
 
 Opis: Omogućava offline rad i cacheanje resursa. Poboljšava performanse, smanjuje učitavanje i optimizira UX.
 Tagovi: Performance Optimization
@@ -731,7 +731,7 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-2. Bundle Analyzer
+### 2. Bundle Analyzer
 
 Opis: Analizira veličinu JS i CSS bundlea za optimizaciju. Pomaže u identificiranju nepotrebnih ovisnosti i ubrzava učitavanje.
 Tagovi: Razvoj i Debugging, Performance Optimization
@@ -739,7 +739,7 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-3. Critical CSS Loader
+### 3. Critical CSS Loader
 
 Opis: Učitava samo kritični CSS prije rendera stranice, smanjujući vrijeme do prvog prikaza.
 Tagovi: Performance Optimization
@@ -747,7 +747,7 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-4. Lazy Loading Components
+### 4. Lazy Loading Components
 
 Opis: Dinamičko učitavanje komponenti i slika po potrebi. Smanjuje početno vrijeme učitavanja stranice i poboljšava performanse.
 Tagovi: Performance Optimization
@@ -755,7 +755,7 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-5. Image Optimization
+### 5. Image Optimization
 
 Opis: Automatska kompresija i formatiranje slika (WebP, resizing). Brže učitavanje i bolje korisničko iskustvo.
 Tagovi: Performance Optimization, Medijski elementi
@@ -763,7 +763,8 @@ Složenost: Medium
 Sati: 2.7 h
 Cijena: 94.50 €
 
-6. Code Splitting
+
+### 6. Code Splitting
 
 Opis: Razdvajanje JavaScript koda na dijelove koji se učitavaju po potrebi. Poboljšava performanse i smanjuje inicijalno učitavanje.
 Tagovi: Performance Optimization, Razvoj i Debugging
@@ -771,7 +772,8 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-7. Asset Optimization
+
+### 7. Asset Optimization
 
 Opis: Minifikacija i optimizacija CSS, JS i ostalih asseta. Poboljšava brzinu stranice i smanjuje propusnost.
 Tagovi: Performance Optimization
@@ -779,7 +781,8 @@ Složenost: Medium
 Sati: 2.7 h
 Cijena: 94.50 €
 
-8. Caching Strategies
+
+### 8. Caching Strategies
 
 Opis: Implementacija različitih strategija cacheanja (HTTP zaglavlja, service worker cache). Smanjuje učitavanje i povećava performanse.
 Tagovi: Performance Optimization
@@ -787,7 +790,8 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-9. CDN Integration
+
+### 9. CDN Integration
 
 Opis: Postavljanje CDN-a za statički sadržaj (slike, JS, CSS). Globalno poboljšava brzinu i smanjuje latency.
 Tagovi: Performance Optimization
@@ -795,7 +799,8 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-10. Performance Monitoring
+
+### 10. Performance Monitoring
 
 Opis: Praćenje performansi stranice i ključnih metrika (LCP, FID, TTI). Omogućuje optimizaciju UX/UI.
 Tagovi: Performance Optimization, Analitika
@@ -803,16 +808,18 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-Security Features
-11. HTTPS Enforcement
 
+## Security Features
+
+### 1 HTTPS Enforcement
 Opis: Automatsko preusmjeravanje na HTTPS i konfiguracija HSTS. Osigurava siguran prijenos podataka i bolji SEO.
 Tagovi: Sigurnost i zaštita
 Složenost: Low
 Sati: 2 h
 Cijena: 70 €
 
-12. CSRF Protection
+
+### 2. CSRF Protection
 
 Opis: Zaštita od cross-site request forgery napada. Validacija zahtjeva i sigurnost korisničkih akcija.
 Tagovi: Sigurnost i zaštita
@@ -820,7 +827,8 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-13. XSS Protection
+
+### 3. XSS Protection
 
 Opis: Sanitizacija korisničkog inputa kako bi se spriječili cross-site scripting napadi.
 Tagovi: Sigurnost i zaštita
@@ -828,7 +836,8 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-14. Input Sanitization
+
+### 4. Input Sanitization
 
 Opis: Napredno čišćenje i validacija unosa na frontendu i backendu. Sprečava injection napade.
 Tagovi: Sigurnost i zaštita, Forme i Kontakt
@@ -836,7 +845,8 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-15. Rate Limiting
+
+### 5. Rate Limiting
 
 Opis: Ograničavanje brzine zahtjeva radi zaštite od zlouporabe i DDoS napada.
 Tagovi: Sigurnost i zaštita
@@ -844,7 +854,7 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-16. Content Security Policy
+### 6. Content Security Policy
 
 Opis: Postavljanje sigurnosnih politika za izvore sadržaja. Sprječava XSS i neželjene skripte.
 Tagovi: Sigurnost i zaštita
@@ -852,7 +862,7 @@ Složenost: Medium
 Sati: 3 h
 Cijena: 105 €
 
-17. Form Spam Protection
+### 7. Form Spam Protection
 
 Opis: Honeypot ili CAPTCHA zaštita za form submission. Sprječava spam i botove.
 Tagovi: Forme i Kontakt, Sigurnost

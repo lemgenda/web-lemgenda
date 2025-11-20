@@ -1,12 +1,11 @@
+// non-critical.js - Non-critical functionality loaded after main content
 class NonCriticalApp {
     constructor() {
-        // Use TranslationManager's base path or fallback
         this.basePath = this.getBasePath();
         setTimeout(() => this.init(), 100);
     }
 
     getBasePath() {
-        // Delegate to TranslationManager for consistent path resolution
         if (window.translationManager && window.translationManager.getBasePath) {
             return window.translationManager.getBasePath();
         }
@@ -14,8 +13,8 @@ class NonCriticalApp {
     }
 
     init() {
-        this.generateHomepageContent();
-        this.generateContactPageFAQ();
+        console.log('🚀 Initializing NonCriticalApp...');
+
         this.initTestimonialsSlider();
         this.initFAQ();
         this.initContactForm();
@@ -23,82 +22,90 @@ class NonCriticalApp {
         this.initPerformanceMonitoring();
         this.initNewsletterModal();
         this.initContactPageForm();
+        this.initHeroButtons();
+
+        // Listen for language changes
+        this.initLanguageChangeListener();
+
+        console.log('✅ NonCriticalApp initialized successfully');
     }
 
-    generateHomepageContent() {
-        if (!document.querySelector('.services-grid') && !document.querySelector('.testimonial-track') && !document.querySelector('.faq-content')) {
-            return;
-        }
+    initFAQ() {
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        console.log(`🔍 Found ${faqQuestions.length} FAQ questions`);
 
-        this.generateServices();
-        this.generateAboutContent();
-        this.generateTestimonials();
-        this.generateFAQ();
-    }
+        // Ukloni postojeće event listenere (za slučaj duplih)
+        faqQuestions.forEach(question => {
+            const newQuestion = question.cloneNode(true);
+            question.parentNode.replaceChild(newQuestion, question);
+        });
 
-    generateServices() {
-        const servicesGrid = document.querySelector('.services-grid');
-        if (!servicesGrid) return;
+        // Ponovno dohvati elemente nakon kloniranja
+        const freshFaqQuestions = document.querySelectorAll('.faq-question');
 
-        const services = [
-            {
-                icon: 'fas fa-laptop-code',
-                title: this.getTranslation('services.responsiveWebsites'),
-                description: this.getTranslation('services.responsiveWebsitesDesc'),
-                key: 'responsiveWebsites'
-            },
-            {
-                icon: 'fas fa-search',
-                title: this.getTranslation('services.seoOptimization'),
-                description: this.getTranslation('services.seoOptimizationDesc'),
-                key: 'seoOptimization'
-            },
-            {
-                icon: 'fas fa-palette',
-                title: this.getTranslation('services.logoDesign'),
-                description: this.getTranslation('services.logoDesignDesc'),
-                key: 'logoDesign'
-            },
-            {
-                icon: 'fas fa-code',
-                title: this.getTranslation('services.customDevelopment'),
-                description: this.getTranslation('services.customDevelopmentDesc'),
-                key: 'customDevelopment'
-            },
-            {
-                icon: 'fas fa-mobile-alt',
-                title: this.getTranslation('services.mobileCleanup'),
-                description: this.getTranslation('services.mobileCleanupDesc'),
-                key: 'mobileCleanup'
-            },
-            {
-                icon: 'fas fa-desktop',
-                title: this.getTranslation('services.osInstallation'),
-                description: this.getTranslation('services.osInstallationDesc'),
-                key: 'osInstallation'
-            },
-            {
-                icon: 'fas fa-shield-virus',
-                title: this.getTranslation('services.pcCleanup'),
-                description: this.getTranslation('services.pcCleanupDesc'),
-                key: 'pcCleanup'
+        freshFaqQuestions.forEach((question, index) => {
+            const answer = document.getElementById(question.getAttribute('aria-controls'));
+
+            // Postavi početno stanje
+            if (answer) {
+                answer.style.display = 'none';
             }
-        ];
 
-        servicesGrid.innerHTML = services.map(service => `
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="${service.icon}" aria-hidden="true"></i>
-                </div>
-                <h3 class="service-title">${service.title}</h3>
-                <p class="service-description">${service.description}</p>
-            </div>
-        `).join('');
+            question.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
 
-        console.log('✅ Services generated');
+                console.log(`📝 FAQ question ${index + 1} clicked`);
+
+                const answer = document.getElementById(question.getAttribute('aria-controls'));
+                const isExpanded = question.getAttribute('aria-expanded') === 'true';
+                const newExpandedState = !isExpanded;
+
+                // Toggle stanje
+                question.setAttribute('aria-expanded', newExpandedState);
+
+                if (answer) {
+                    if (newExpandedState) {
+                        answer.style.display = 'block';
+                        answer.setAttribute('aria-hidden', 'false');
+                    } else {
+                        answer.style.display = 'none';
+                        answer.setAttribute('aria-hidden', 'true');
+                    }
+                }
+
+                // Toggle ikona
+                const icon = question.querySelector('i');
+                if (icon) {
+                    icon.className = newExpandedState ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+                }
+
+                console.log(`📖 FAQ ${index + 1} expanded: ${newExpandedState}`);
+            });
+
+            // Keyboard support
+            question.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    question.click();
+                }
+            });
+        });
+
+        console.log('✅ FAQ functionality initialized');
     }
 
-    generateAboutContent() {
+    initLanguageChangeListener() {
+        document.addEventListener('languageChanged', (e) => {
+            console.log('🔄 Language changed detected, regenerating content...');
+            this.regenerateAboutContent();
+            this.regenerateTestimonials();
+            this.applyNewsletterTranslations();
+            this.initHeroButtons();
+        });
+    }
+
+    regenerateAboutContent() {
         // Generate expertise items
         const expertiseGrid = document.querySelector('.expertise-grid');
         if (expertiseGrid) {
@@ -173,26 +180,26 @@ class NonCriticalApp {
             `).join('');
         }
 
-        console.log('✅ About content generated');
+        console.log('✅ About content regenerated');
     }
 
-    generateTestimonials() {
+    regenerateTestimonials() {
         const testimonialTrack = document.querySelector('.testimonial-track');
         if (!testimonialTrack) return;
 
         const testimonials = [
             {
-                content: "Lemgenda created an amazing website for our business. Professional, fast, and great communication throughout the project.",
+                content: this.getTranslation('testimonials.testimonial1') || "Lemgenda je izradila nevjerojatnu web stranicu za naš posao. Profesionalno, brzo i odlična komunikacija tijekom cijelog projekta.",
                 author: "Ivan Horvat",
                 company: "Tech Solutions Inc."
             },
             {
-                content: "Excellent SEO services! Our website traffic increased by 200% in just 3 months. Highly recommended!",
+                content: this.getTranslation('testimonials.testimonial2') || "Izvrsne SEO usluge! Promet na našoj web stranici povećao se za 200% u samo 3 mjeseca. Toplo preporučujem!",
                 author: "Ana Kovač",
                 company: "Digital Marketing Pro"
             },
             {
-                content: "The custom web application they built for us has streamlined our workflow perfectly. Great technical expertise!",
+                content: this.getTranslation('testimonials.testimonial3') || "Prilagođena web aplikacija koju su izgradili za nas savršeno je optimizirala naš radni tijek. Izvrsna tehnička stručnost!",
                 author: "Marko Petrović",
                 company: "Business Systems Ltd."
             }
@@ -217,104 +224,40 @@ class NonCriticalApp {
             </div>
         `).join('');
 
-        console.log('✅ Testimonials generated');
+        // Re-initialize slider after regeneration
+        this.initTestimonialsSlider();
+
+        console.log('✅ Testimonials regenerated');
     }
 
-    generateFAQ() {
-        const faqContent = document.querySelector('.faq-content');
-        if (!faqContent) return;
+    initHeroButtons() {
+        const portfolioBtn = document.querySelector('.hero-portfolio-btn');
+        const quoteBtn = document.querySelector('.hero-quote-btn');
 
-        const faqs = [
-            {
-                question: this.getTranslation('faq.q1'),
-                answer: this.getTranslation('faq.a1'),
-                key: 'q1'
-            },
-            {
-                question: this.getTranslation('faq.q2'),
-                answer: this.getTranslation('faq.a2'),
-                key: 'q2'
-            },
-            {
-                question: this.getTranslation('faq.q3'),
-                answer: this.getTranslation('faq.a3'),
-                key: 'q3'
-            },
-            {
-                question: this.getTranslation('faq.q4'),
-                answer: this.getTranslation('faq.a4'),
-                key: 'q4'
-            },
-            {
-                question: this.getTranslation('faq.q5'),
-                answer: this.getTranslation('faq.a5'),
-                key: 'q5'
+        if (portfolioBtn && portfolioBtn.hasAttribute('data-translate')) {
+            const translation = this.getTranslation(portfolioBtn.getAttribute('data-translate'));
+            if (translation && translation !== portfolioBtn.getAttribute('data-translate')) {
+                portfolioBtn.textContent = translation;
             }
-        ];
+        }
 
-        faqContent.innerHTML = faqs.map((faq, index) => `
-            <div class="faq-item">
-                <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-${index}">
-                    <span>${faq.question}</span>
-                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                </button>
-                <div class="faq-answer" id="faq-answer-${index}" aria-hidden="true">
-                    <p>${faq.answer}</p>
-                </div>
-            </div>
-        `).join('');
-
-        console.log('✅ FAQ generated');
-    }
-
-    generateContactPageFAQ() {
-        const contactFaqContent = document.querySelector('.contact-page-content .faq-content');
-        if (!contactFaqContent) return;
-
-        const contactFaqs = [
-            {
-                question: this.getTranslation('contact.faq1'),
-                answer: this.getTranslation('contact.faq1answer'),
-                key: 'faq1'
-            },
-            {
-                question: this.getTranslation('contact.faq2'),
-                answer: this.getTranslation('contact.faq2answer'),
-                key: 'faq2'
-            },
-            {
-                question: this.getTranslation('contact.faq3'),
-                answer: this.getTranslation('contact.faq3answer'),
-                key: 'faq3'
+        if (quoteBtn && quoteBtn.hasAttribute('data-translate')) {
+            const translation = this.getTranslation(quoteBtn.getAttribute('data-translate'));
+            if (translation && translation !== quoteBtn.getAttribute('data-translate')) {
+                quoteBtn.textContent = translation;
             }
-        ];
+        }
 
-        contactFaqContent.innerHTML = contactFaqs.map((faq, index) => `
-            <div class="faq-item">
-                <button class="faq-question" aria-expanded="false" aria-controls="contact-faq-answer-${index}">
-                    <span>${faq.question}</span>
-                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                </button>
-                <div class="faq-answer" id="contact-faq-answer-${index}" aria-hidden="true">
-                    <p>${faq.answer}</p>
-                </div>
-            </div>
-        `).join('');
-
-        console.log('✅ Contact FAQ generated');
+        console.log('✅ Hero buttons initialized');
     }
 
-    // PROPER TRANSLATION FALLBACK
     getTranslation(key) {
-        // Use the translation manager if available and initialized
         if (window.translationManager && window.translationManager.initialized) {
             return window.translationManager.getTranslation(key);
         }
-        // Fallback to key if translations aren't ready
         return key;
     }
 
-    // Add the missing methods
     initTestimonialsSlider() {
         const track = document.querySelector('.testimonial-track');
         const slides = document.querySelectorAll('.testimonial-slide');
@@ -333,12 +276,12 @@ class NonCriticalApp {
             for (let i = 0; i < totalSlides; i++) {
                 const dot = document.createElement('div');
                 dot.className = `testimonial-dot ${i === 0 ? 'active' : ''}`;
-                dot.addEventListener('click', () => goToSlide(i));
+                dot.addEventListener('click', () => this.goToSlide(i));
                 dotsContainer.appendChild(dot);
             }
         }
 
-        const goToSlide = (slideIndex) => {
+        this.goToSlide = (slideIndex) => {
             currentSlide = slideIndex;
             track.style.transform = `translateX(-${slideIndex * 100}%)`;
 
@@ -355,63 +298,35 @@ class NonCriticalApp {
 
         const nextSlide = () => {
             currentSlide = (currentSlide + 1) % totalSlides;
-            goToSlide(currentSlide);
+            this.goToSlide(currentSlide);
         };
 
         const prevSlide = () => {
             currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            goToSlide(currentSlide);
+            this.goToSlide(currentSlide);
         };
 
         if (prevBtn) prevBtn.addEventListener('click', prevSlide);
         if (nextBtn) nextBtn.addEventListener('click', nextSlide);
 
         // Auto-advance slides
-        setInterval(nextSlide, 5000);
+        this.sliderInterval = setInterval(nextSlide, 5000);
 
         console.log('✅ Testimonials slider initialized');
-    }
-
-    initFAQ() {
-        const faqQuestions = document.querySelectorAll('.faq-question');
-
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const isExpanded = question.getAttribute('aria-expanded') === 'true';
-                const answer = document.getElementById(question.getAttribute('aria-controls'));
-
-                // Close all other FAQ items
-                faqQuestions.forEach(q => {
-                    if (q !== question) {
-                        q.setAttribute('aria-expanded', 'false');
-                        const otherAnswer = document.getElementById(q.getAttribute('aria-controls'));
-                        if (otherAnswer) {
-                            otherAnswer.setAttribute('aria-hidden', 'true');
-                        }
-                    }
-                });
-
-                // Toggle current item
-                question.setAttribute('aria-expanded', !isExpanded);
-                if (answer) {
-                    answer.setAttribute('aria-hidden', isExpanded);
-                }
-            });
-        });
-
-        console.log('✅ FAQ initialized');
     }
 
     initContactForm() {
         const contactForm = document.getElementById('contact-form');
         if (!contactForm) return;
 
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (this.validateContactForm(contactForm)) {
-                this.submitContactForm(contactForm, 'contact');
-            }
-        });
+        if (window.criticalApp) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (window.criticalApp.validateBasicForm(contactForm)) {
+                    this.submitContactForm(contactForm, 'contact');
+                }
+            });
+        }
 
         console.log('✅ Contact form initialized');
     }
@@ -420,18 +335,19 @@ class NonCriticalApp {
         const contactPageForm = document.getElementById('contact-page-form');
         if (!contactPageForm) return;
 
-        contactPageForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (this.validateContactPageForm(contactPageForm)) {
-                this.submitContactForm(contactPageForm, 'contact');
-            }
-        });
+        if (window.criticalApp) {
+            contactPageForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (window.criticalApp.validateBasicForm(contactPageForm)) {
+                    this.submitContactForm(contactPageForm, 'contact');
+                }
+            });
+        }
 
         console.log('✅ Contact page form initialized');
     }
 
     initLazyLoading() {
-        // Simple lazy loading for images
         const images = document.querySelectorAll('img[loading="lazy"]');
 
         const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -439,6 +355,7 @@ class NonCriticalApp {
                 if (entry.isIntersecting) {
                     const img = entry.target;
                     img.src = img.dataset.src || img.src;
+                    img.classList.add('loaded');
                     imageObserver.unobserve(img);
                 }
             });
@@ -450,48 +367,23 @@ class NonCriticalApp {
     }
 
     initPerformanceMonitoring() {
-        // Basic performance monitoring
         window.addEventListener('load', () => {
             const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
             console.log(`🕒 Page load time: ${loadTime}ms`);
+
+            // Report to analytics if available
+            if (window.gtag) {
+                gtag('event', 'timing_complete', {
+                    'name': 'page_load',
+                    'value': loadTime,
+                    'event_category': 'Performance'
+                });
+            }
         });
 
         console.log('✅ Performance monitoring initialized');
     }
 
-    validateContactForm(form) {
-        let isValid = true;
-        const requiredFields = form.querySelectorAll('[required]');
-
-        requiredFields.forEach(field => {
-            if (!field.value.trim()) {
-                isValid = false;
-                field.setAttribute('aria-invalid', 'true');
-            } else {
-                field.setAttribute('aria-invalid', 'false');
-            }
-        });
-
-        return isValid;
-    }
-
-    validateContactPageForm(form) {
-        let isValid = true;
-        const requiredFields = form.querySelectorAll('[required]');
-
-        requiredFields.forEach(field => {
-            if (!field.value.trim()) {
-                isValid = false;
-                field.setAttribute('aria-invalid', 'true');
-            } else {
-                field.setAttribute('aria-invalid', 'false');
-            }
-        });
-
-        return isValid;
-    }
-
-    // Updated submitContactForm method with HubSpot integration
     submitContactForm(form, formType = 'contact') {
         const submitButton = form.querySelector('button[type="submit"]');
         const originalText = submitButton.innerHTML;
@@ -500,23 +392,38 @@ class NonCriticalApp {
         submitButton.disabled = true;
         submitButton.innerHTML = `
             <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
-            Sending...
+            ${this.getTranslation('contact.sending') || 'Slanje...'}
         `;
 
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
 
-        // Submit to HubSpot with correct form type
+        // Submit to HubSpot
         this.submitToHubSpot(data, formType).then(() => {
-            this.showNotification('Message sent successfully! We will get back to you soon.', 'success');
-            form.reset();
+            // Redirect to success page for contact forms
+            if (formType === 'contact' || formType === 'landing') {
+                window.location.href = '../stranice/contact-success.html';
+            } else {
+                if (window.criticalApp) {
+                    window.criticalApp.showNotification(
+                        this.getTranslation('contact.success') || 'Poruka uspješno poslana! Javit ćemo vam se uskoro.',
+                        'success'
+                    );
+                }
+                form.reset();
 
-            // Reset button
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalText;
+                // Reset button
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalText;
+            }
         }).catch((error) => {
             console.error('Form submission failed:', error);
-            this.showNotification('Message failed to send. Please try again or contact us directly.', 'error');
+            if (window.criticalApp) {
+                window.criticalApp.showNotification(
+                    this.getTranslation('contact.error') || 'Poruka nije poslana. Pokušajte ponovno ili nas kontaktirajte izravno.',
+                    'error'
+                );
+            }
 
             // Reset button
             submitButton.disabled = false;
@@ -524,31 +431,27 @@ class NonCriticalApp {
         });
     }
 
-    // HubSpot submission method with your actual form IDs
     submitToHubSpot(data, formType) {
         return new Promise((resolve, reject) => {
-            // Map form types to HubSpot form IDs
             const formIds = {
-                'newsletter': 'c741e7cd0e65',      // Newsletter Subscription
-                'contact': '1e99eeb57eff',         // General Contact
-                'landing': 'd94966c3db03'          // Website Consultation
+                'newsletter': 'c741e7cd0e65',
+                'contact': '1e99eeb57eff',
+                'landing': 'd94966c3db03'
             };
 
             const formId = formIds[formType] || formIds['contact'];
 
-            // Prepare form data for HubSpot
             const hubspotFormData = {
                 fields: this.prepareHubSpotFields(data, formType),
                 context: {
                     pageUri: window.location.href,
                     pageName: document.title,
-                    hutk: document.cookie.match(/hubspotutk=([^;]+)/)?.[1] // User token
+                    hutk: document.cookie.match(/hubspotutk=([^;]+)/)?.[1]
                 }
             };
 
             console.log(`📤 Submitting to HubSpot form ${formId}:`, hubspotFormData);
 
-            // Use HubSpot Forms API
             fetch(`https://api.hsforms.com/submissions/v3/integration/submit/147273350/${formId}`, {
                 method: 'POST',
                 headers: {
@@ -573,11 +476,9 @@ class NonCriticalApp {
         });
     }
 
-    // Helper method to prepare HubSpot fields
     prepareHubSpotFields(data, formType) {
         const fields = [];
 
-        // Email field (common to all forms)
         if (data.email) {
             fields.push({
                 name: "email",
@@ -585,7 +486,6 @@ class NonCriticalApp {
             });
         }
 
-        // Name fields
         if (data.name || data.fullname) {
             const fullName = data.name || data.fullname || '';
             const nameParts = fullName.split(' ');
@@ -601,7 +501,6 @@ class NonCriticalApp {
             );
         }
 
-        // Phone field
         if (data.phone) {
             fields.push({
                 name: "phone",
@@ -609,7 +508,6 @@ class NonCriticalApp {
             });
         }
 
-        // Company field
         if (data.company) {
             fields.push({
                 name: "company",
@@ -617,7 +515,6 @@ class NonCriticalApp {
             });
         }
 
-        // Project type (for landing page)
         if (data.project_type) {
             fields.push({
                 name: "project_type",
@@ -625,7 +522,6 @@ class NonCriticalApp {
             });
         }
 
-        // Budget (for landing page)
         if (data.budget) {
             fields.push({
                 name: "budget",
@@ -633,7 +529,6 @@ class NonCriticalApp {
             });
         }
 
-        // Message/description
         if (data.message) {
             fields.push({
                 name: "message",
@@ -641,7 +536,6 @@ class NonCriticalApp {
             });
         }
 
-        // Subject (for contact forms)
         if (data.subject && !data.message) {
             fields.push({
                 name: "message",
@@ -649,13 +543,11 @@ class NonCriticalApp {
             });
         }
 
-        // Website URL
         fields.push({
             name: "website",
             value: window.location.href
         });
 
-        // Form source
         fields.push({
             name: "form_source",
             value: `${formType}_form_${window.location.pathname}`
@@ -664,36 +556,37 @@ class NonCriticalApp {
         return fields;
     }
 
-    // Fixed Newsletter Modal functionality
     initNewsletterModal() {
-        // Create newsletter modal if it doesn't exist
+        console.log('📧 Initializing newsletter modal...');
+
         this.createNewsletterModal();
 
         const newsletterModal = document.getElementById('newsletter-modal');
-        if (!newsletterModal) return;
+        if (!newsletterModal) {
+            console.error('❌ Newsletter modal not found after creation');
+            return;
+        }
 
-        // Check if user already saw the modal in this session AND no cookie consent is active
+        this.applyNewsletterTranslations();
+
         const newsletterShown = sessionStorage.getItem('newsletterShown');
         const cookieConsent = document.getElementById('cookie-consent');
         const isCookieConsentActive = cookieConsent && cookieConsent.classList.contains('active');
 
         if (!newsletterShown && !isCookieConsentActive) {
-            // Show newsletter modal after 15 seconds (increased from 10)
             setTimeout(() => {
-                // Double-check cookie consent isn't active
                 const currentCookieConsent = document.getElementById('cookie-consent');
                 const isCookieActive = currentCookieConsent && currentCookieConsent.classList.contains('active');
 
-                if (!isCookieActive) {
+                if (!isCookieActive && document.visibilityState === 'visible') {
                     this.showNewsletterModal();
                     sessionStorage.setItem('newsletterShown', 'true');
                 } else {
-                    console.log('📧 Newsletter delayed - cookie consent active');
+                    console.log('📧 Newsletter delayed - cookie consent active or tab not visible');
                 }
-            }, 15000);
+            }, 20000);
         }
 
-        // Newsletter form handling
         const newsletterForm = document.getElementById('newsletter-form');
         if (newsletterForm) {
             this.initNewsletterFormValidation(newsletterForm);
@@ -705,7 +598,6 @@ class NonCriticalApp {
             });
         }
 
-        // Close button event
         const closeBtn = newsletterModal.querySelector('.modal-close');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
@@ -716,47 +608,14 @@ class NonCriticalApp {
         console.log('✅ Newsletter modal initialized');
     }
 
-    // Updated newsletter form submission
-    submitNewsletterForm(form) {
-        const submitButton = form.querySelector('button[type="submit"]');
-        const originalText = submitButton.innerHTML;
-
-        // Show loading state
-        submitButton.disabled = true;
-        submitButton.innerHTML = `
-            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
-            Subscribing...
-        `;
-
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-
-        // Submit to HubSpot newsletter form
-        this.submitToHubSpot(data, 'newsletter').then(() => {
-            this.showNotification('Thank you for subscribing to our newsletter!', 'success');
-            form.reset();
-            this.hideNewsletterModal();
-
-            // Reset button
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalText;
-
-        }).catch((error) => {
-            console.error('Newsletter submission failed:', error);
-            this.showNotification('Subscription failed. Please try again.', 'error');
-
-            // Reset button
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalText;
-        });
-    }
-
     createNewsletterModal() {
-        // Check if modal already exists
         if (document.getElementById('newsletter-modal')) return;
 
         const modalsContainer = document.getElementById('modals-container');
-        if (!modalsContainer) return;
+        if (!modalsContainer) {
+            console.error('❌ Modals container not found for newsletter');
+            return;
+        }
 
         const newsletterModal = document.createElement('div');
         newsletterModal.id = 'newsletter-modal';
@@ -767,30 +626,30 @@ class NonCriticalApp {
         newsletterModal.innerHTML = `
             <div class="modal-content newsletter-content">
                 <div class="modal-header">
-                    <h2 id="newsletter-modal-title" data-translate="newsletter.title">Stay Informed!</h2>
-                    <p data-translate="newsletter.subtitle">Receive the latest web development trends and exclusive offers.</p>
+                    <h2 id="newsletter-modal-title" data-translate="newsletter.title">Ostanite Informirani!</h2>
+                    <p data-translate="newsletter.subtitle">Primajte najnovije trendove u web razvoju i ekskluzivne ponude.</p>
                 </div>
                 <div class="modal-body">
                     <form id="newsletter-form" novalidate aria-label="Newsletter subscription form">
                         <div class="form-group">
-                            <label for="newsletter-name" data-translate="newsletter.name">Name</label>
-                            <input type="text" id="newsletter-name" name="name">
+                            <label for="newsletter-name" data-translate="newsletter.name">Ime</label>
+                            <input type="text" id="newsletter-name" name="name" placeholder="Unesite vaše ime">
                         </div>
                         <div class="form-group">
-                            <label for="newsletter-email" data-translate="newsletter.email">Email Address *</label>
-                            <input type="email" id="newsletter-email" name="email" required>
+                            <label for="newsletter-email" data-translate="newsletter.email">Email adresa *</label>
+                            <input type="email" id="newsletter-email" name="email" required placeholder="Unesite vašu email adresu">
                             <div class="error-message" id="newsletter-email-error"></div>
                         </div>
                         <div class="form-group">
                             <label class="checkbox-label">
                                 <input type="checkbox" id="newsletter-privacy" name="privacy" required>
-                                <span data-translate="newsletter.privacy">I agree to the privacy policy and terms of use</span>
+                                <span data-translate="newsletter.privacy">Slažem se s politikom privatnosti</span>
                             </label>
                             <div class="error-message" id="newsletter-privacy-error"></div>
                         </div>
                         <button type="submit" class="btn btn-primary" data-translate="newsletter.subscribe">
                             <i class="fas fa-envelope" aria-hidden="true"></i>
-                            Subscribe
+                            Pretplati se
                         </button>
                     </form>
                 </div>
@@ -802,27 +661,76 @@ class NonCriticalApp {
 
         modalsContainer.appendChild(newsletterModal);
 
+        setTimeout(() => {
+            if (window.translationManager && window.translationManager.applyTranslations) {
+                window.translationManager.applyTranslations();
+            }
+        }, 100);
+
         console.log('✅ Newsletter modal created');
+    }
+
+    applyNewsletterTranslations() {
+        const newsletterModal = document.getElementById('newsletter-modal');
+        if (!newsletterModal) return;
+
+        const elements = newsletterModal.querySelectorAll('[data-translate]');
+        elements.forEach(element => {
+            const key = element.getAttribute('data-translate');
+            const translation = this.getTranslation(key);
+
+            if (translation && translation !== key) {
+                this.applyTranslationToElement(element, translation);
+            }
+        });
+
+        console.log('✅ Newsletter modal translations applied');
+    }
+
+    applyTranslationToElement(element, translation) {
+        try {
+            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                if (element.type !== 'submit' && element.type !== 'button') {
+                    element.placeholder = translation;
+                } else {
+                    element.value = translation;
+                }
+            } else if (element.hasAttribute('aria-label')) {
+                element.setAttribute('aria-label', translation);
+            } else {
+                element.textContent = translation;
+            }
+        } catch (error) {
+            console.error('Error applying translation to newsletter element:', error);
+        }
     }
 
     showNewsletterModal() {
         const newsletterModal = document.getElementById('newsletter-modal');
         if (!newsletterModal) return;
 
-        // Check if cookie consent is currently active
         const cookieConsent = document.getElementById('cookie-consent');
         const isCookieActive = cookieConsent && cookieConsent.classList.contains('active');
 
         if (isCookieActive) {
             console.log('📧 Newsletter modal delayed - cookie consent is active');
-            // Try again in 5 seconds
             setTimeout(() => this.showNewsletterModal(), 5000);
             return;
         }
 
-        newsletterModal.classList.add('active');
-        newsletterModal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+        if (window.criticalApp && window.criticalApp.showModal) {
+            window.criticalApp.showModal(newsletterModal);
+        } else {
+            newsletterModal.classList.add('active');
+            newsletterModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            document.body.classList.add('modal-open');
+
+            setTimeout(() => {
+                const firstInput = newsletterModal.querySelector('input');
+                if (firstInput) firstInput.focus();
+            }, 100);
+        }
 
         console.log('📧 Newsletter modal shown');
     }
@@ -831,13 +739,17 @@ class NonCriticalApp {
         const newsletterModal = document.getElementById('newsletter-modal');
         if (!newsletterModal) return;
 
-        newsletterModal.classList.remove('active');
-        newsletterModal.setAttribute('aria-hidden', 'true');
+        if (window.criticalApp && window.criticalApp.hideModal) {
+            window.criticalApp.hideModal(newsletterModal);
+        } else {
+            newsletterModal.classList.remove('active');
+            newsletterModal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
 
-        // Only reset body overflow if no other modals are active
-        const otherActiveModals = document.querySelectorAll('.modal.active');
-        if (otherActiveModals.length === 0) {
-            document.body.style.overflow = '';
+            const otherActiveModals = document.querySelectorAll('.modal.active');
+            if (otherActiveModals.length === 0) {
+                document.body.style.overflow = '';
+            }
         }
 
         console.log('📧 Newsletter modal hidden');
@@ -858,12 +770,12 @@ class NonCriticalApp {
             emailInput.addEventListener('blur', () => {
                 if (!emailInput.value.trim()) {
                     if (emailError) {
-                        emailError.textContent = this.getTranslation('newsletter.emailRequired') || 'Email address is required';
+                        emailError.textContent = this.getTranslation('newsletter.emailRequired') || 'Email adresa je obavezna';
                     }
                     emailInput.setAttribute('aria-invalid', 'true');
                 } else if (!this.isValidEmail(emailInput.value)) {
                     if (emailError) {
-                        emailError.textContent = this.getTranslation('newsletter.invalidEmail') || 'Please enter a valid email address';
+                        emailError.textContent = this.getTranslation('newsletter.invalidEmail') || 'Molimo unesite važeću email adresu';
                     }
                     emailInput.setAttribute('aria-invalid', 'true');
                 }
@@ -884,20 +796,18 @@ class NonCriticalApp {
         const emailError = form.querySelector('#newsletter-email-error');
         const privacyError = form.querySelector('#newsletter-privacy-error');
 
-        // Clear previous errors
         if (emailError) emailError.textContent = '';
         if (privacyError) privacyError.textContent = '';
 
-        // Validate email
         if (!emailInput.value.trim()) {
             if (emailError) {
-                emailError.textContent = this.getTranslation('newsletter.emailRequired') || 'Email address is required';
+                emailError.textContent = this.getTranslation('newsletter.emailRequired') || 'Email adresa je obavezna';
             }
             emailInput.setAttribute('aria-invalid', 'true');
             isValid = false;
         } else if (!this.isValidEmail(emailInput.value)) {
             if (emailError) {
-                emailError.textContent = this.getTranslation('newsletter.invalidEmail') || 'Please enter a valid email address';
+                emailError.textContent = this.getTranslation('newsletter.invalidEmail') || 'Molimo unesite važeću email adresu';
             }
             emailInput.setAttribute('aria-invalid', 'true');
             isValid = false;
@@ -905,10 +815,9 @@ class NonCriticalApp {
             emailInput.setAttribute('aria-invalid', 'false');
         }
 
-        // Validate privacy checkbox
         if (!privacyCheckbox.checked) {
             if (privacyError) {
-                privacyError.textContent = this.getTranslation('newsletter.privacyRequired') || 'You must agree to the privacy policy';
+                privacyError.textContent = this.getTranslation('newsletter.privacyRequired') || 'Morate se složiti s politikom privatnosti';
             }
             isValid = false;
         }
@@ -916,30 +825,123 @@ class NonCriticalApp {
         return isValid;
     }
 
+    submitNewsletterForm(form) {
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+
+        submitButton.disabled = true;
+        submitButton.innerHTML = `
+            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+            ${this.getTranslation('newsletter.subscribing') || 'Pretplata...'}
+        `;
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+
+        this.submitToHubSpot(data, 'newsletter').then(() => {
+            if (window.criticalApp) {
+                window.criticalApp.showNotification(
+                    this.getTranslation('newsletter.success') || 'Hvala vam što ste se pretplatili na naš newsletter!',
+                    'success'
+                );
+            }
+            form.reset();
+            this.hideNewsletterModal();
+
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+
+        }).catch((error) => {
+            console.error('Newsletter submission failed:', error);
+            if (window.criticalApp) {
+                window.criticalApp.showNotification(
+                    this.getTranslation('newsletter.error') || 'Pretplata nije uspjela. Pokušajte ponovno.',
+                    'error'
+                );
+            }
+
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+        });
+    }
+
     isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
 
-    showNotification(message, type = 'info') {
-        if (window.criticalApp && window.criticalApp.showNotification) {
-            window.criticalApp.showNotification(message, type);
-        } else {
-            // Fallback
-            alert(message);
+    // Cleanup method to clear intervals
+    destroy() {
+        if (this.sliderInterval) {
+            clearInterval(this.sliderInterval);
         }
+    }
+}
+
+// Enhanced internal linking
+class InternalLinking {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        this.addRelatedServicesLinks();
+        this.addServiceToPortfolioLinks();
+        this.addCrossServiceReferences();
+    }
+
+    addRelatedServicesLinks() {
+        const servicesGrid = document.querySelector('.services-grid');
+        if (servicesGrid) {
+            // Add related service links to service cards
+            const serviceLinks = {
+                'web-development': ['seo', 'logo-design', 'custom-development'],
+                'seo': ['web-development', 'web-marketing', 'sem'],
+                'logo-design': ['web-development', 'brand-identity']
+            };
+
+            // Implementation would go here based on your specific structure
+        }
+    }
+
+    addServiceToPortfolioLinks() {
+        // Add links from services to relevant portfolio items
+        const portfolioLinks = document.querySelectorAll('.service-card');
+        portfolioLinks.forEach(card => {
+            // Add "View related work" links
+        });
+    }
+
+    addCrossServiceReferences() {
+        // Add cross-references between services
+        console.log('✅ Internal linking initialized');
     }
 }
 
 // Initialize homepage-specific functionality
 document.addEventListener('DOMContentLoaded', () => {
-    if (document.querySelector('.testimonials-slider') ||
+    // Check if we're on a page that needs non-critical functionality
+    const needsNonCritical =
+        document.querySelector('.testimonials-slider') ||
         document.querySelector('#contact-form') ||
-        document.querySelector('.services-grid') ||
-        document.querySelector('.contact-page-content')) {
-        // Wait for critical app and translations
+        document.querySelector('.contact-page-content') ||
+        document.querySelector('.faq-content') ||
+        document.querySelector('.newsletter-modal');
+
+    if (needsNonCritical) {
         setTimeout(() => {
+            console.log('🚀 Starting NonCriticalApp initialization...');
             window.nonCriticalApp = new NonCriticalApp();
+
+            // Initialize internal linking if needed
+            if (document.querySelector('.services-grid')) {
+                window.internalLinking = new InternalLinking();
+            }
         }, 500);
     }
 });
+
+// Export for module systems (if needed)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { NonCriticalApp, InternalLinking };
+}

@@ -6,7 +6,7 @@ class TranslationManager {
             'en': {}
         };
         this.initialized = false;
-        this.basePath = this.getBasePath(); // Calculate once
+        this.basePath = this.getBasePath();
         this.initPromise = this.init();
     }
 
@@ -22,13 +22,28 @@ class TranslationManager {
                 this.loadTranslationFile('en', `${this.basePath}translations/en.json`)
             ]);
 
-            const savedLang = localStorage.getItem('preferredLanguage') || 'hr';
-            this.currentLang = savedLang;
+            // Get saved language with proper fallback
+            const savedLang = localStorage.getItem('preferredLanguage');
+            console.log('💾 Saved language from localStorage:', savedLang);
+
+            // Validate saved language exists in our translations
+            if (savedLang && this.translations[savedLang] && Object.keys(this.translations[savedLang]).length > 0) {
+                this.currentLang = savedLang;
+                console.log(`✅ Using saved language: ${savedLang}`);
+            } else {
+                this.currentLang = 'hr'; // Default to Croatian
+                localStorage.setItem('preferredLanguage', 'hr');
+                console.log(`🔧 Using default language: hr`);
+            }
 
             this.initialized = true;
             console.log('✅ TranslationManager initialized successfully');
 
+            // Apply translations immediately
             this.applyTranslations();
+
+            // Update language switcher UI
+            this.updateLanguageSwitcher();
 
         } catch (error) {
             console.error('❌ Error initializing TranslationManager:', error);
@@ -36,24 +51,21 @@ class TranslationManager {
         }
     }
 
-    // SINGLE SOURCE OF TRUTH for base path resolution
     getBasePath() {
         const currentPath = window.location.pathname;
         console.log(`📍 Current path: ${currentPath}`);
 
-        // Handle various URL structures
-        if (currentPath.includes('/pages/')) {
+        if (currentPath.includes('/stranice/')) {
             return '../';
-        } else if (currentPath.includes('/services/')) {
+        } else if (currentPath.includes('/web-usluge/') || currentPath.includes('/usluge/')) {
             return '../';
         } else if (currentPath.includes('/websites/')) {
-            // Handle your specific development structure
             if (currentPath.includes('/web-lemgenda/')) {
                 return './';
             }
             return './web-lemgenda/';
         } else {
-            return '../';
+            return './';
         }
     }
 
@@ -75,23 +87,19 @@ class TranslationManager {
         }
     }
 
-    // Make base path available to other components
     getBasePathForComponents() {
         return this.basePath;
     }
 
-    // SYNCHRONOUS - no async/await
     getTranslation(key) {
         if (!this.initialized) {
             console.warn('TranslationManager not initialized yet, returning key:', key);
             return key;
         }
 
-        // Handle nested keys like "navigation.home", "services.title", etc.
         const keys = key.split('.');
         let value = this.translations[this.currentLang];
 
-        // Traverse the nested object
         for (const k of keys) {
             if (value && typeof value === 'object' && k in value) {
                 value = value[k];
@@ -101,7 +109,6 @@ class TranslationManager {
             }
         }
 
-        // If not found in current language, try English fallback
         if (value === undefined && this.currentLang !== 'en') {
             value = this.translations['en'];
             for (const k of keys) {
@@ -114,7 +121,6 @@ class TranslationManager {
             }
         }
 
-        // If still not found, return the key itself
         if (value === undefined) {
             console.warn(`🚫 Translation not found for key: ${key}`);
             return key;
@@ -124,12 +130,25 @@ class TranslationManager {
     }
 
     setLanguage(lang) {
+        console.log(`🔤 Setting language to: ${lang}`);
+
         if (this.translations[lang] && Object.keys(this.translations[lang]).length > 0) {
             this.currentLang = lang;
+
+            // Save to localStorage immediately
             localStorage.setItem('preferredLanguage', lang);
+            console.log(`💾 Saved language preference: ${lang}`);
+
+            // Apply translations
             this.applyTranslations();
+
+            // Update language switcher UI
             this.updateLanguageSwitcher();
-            console.log(`🔤 Language set to: ${lang}`);
+
+            // Trigger custom event for other components
+            this.triggerLanguageChange();
+
+            console.log(`✅ Language set to: ${lang}`);
         } else {
             console.warn(`⚠️ Language ${lang} not available or empty`);
         }
@@ -155,7 +174,23 @@ class TranslationManager {
             }
         });
 
-        console.log(`✅ Applied ${appliedCount} translations`);
+        // Apply placeholder translations
+        const placeholderElements = document.querySelectorAll('[data-translate-placeholder]');
+        placeholderElements.forEach(element => {
+            const key = element.getAttribute('data-translate-placeholder');
+            const translation = this.getTranslation(key);
+
+            if (translation && translation !== key) {
+                element.setAttribute('placeholder', translation);
+            }
+        });
+
+        console.log(`✅ Applied ${appliedCount} translations and ${placeholderElements.length} placeholders`);
+
+        // Trigger services regeneration if nonCriticalApp exists
+        if (window.nonCriticalApp && typeof window.nonCriticalApp.regenerateServices === 'function') {
+            window.nonCriticalApp.regenerateServices();
+        }
     }
 
     applyTranslationToElement(element, translation) {
@@ -173,7 +208,6 @@ class TranslationManager {
             } else if (element.hasAttribute('alt')) {
                 element.setAttribute('alt', translation);
             } else {
-                // Handle HTML content safely - only if translation contains HTML tags
                 if (typeof translation === 'string' && translation.includes('<') && translation.includes('>')) {
                     element.innerHTML = translation;
                 } else {
@@ -189,14 +223,33 @@ class TranslationManager {
         const currentLangSpan = document.querySelector('.current-lang');
         if (currentLangSpan) {
             currentLangSpan.textContent = this.currentLang.toUpperCase();
+            console.log(`🎯 Updated language switcher to: ${this.currentLang.toUpperCase()}`);
         }
 
-        // Update dropdown buttons
+        // Update dropdown buttons active state
         const dropdownButtons = document.querySelectorAll('.language-dropdown button');
         dropdownButtons.forEach(button => {
             const lang = button.getAttribute('data-lang');
             button.textContent = lang.toUpperCase();
+
+            // Update active state
+            if (lang === this.currentLang) {
+                button.setAttribute('aria-current', 'true');
+                button.classList.add('active');
+            } else {
+                button.removeAttribute('aria-current');
+                button.classList.remove('active');
+            }
         });
+    }
+
+    // New method to trigger language change event
+    triggerLanguageChange() {
+        const event = new CustomEvent('languageChanged', {
+            detail: { language: this.currentLang }
+        });
+        document.dispatchEvent(event);
+        console.log(`📢 Dispatched languageChanged event: ${this.currentLang}`);
     }
 
     // Method to check if a specific key exists
@@ -269,6 +322,16 @@ class TranslationManager {
 if (!window.translationManager) {
     console.log('🚀 Creating TranslationManager instance...');
     window.translationManager = new TranslationManager();
+
+    // Listen for storage events to sync language across tabs
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'preferredLanguage' && e.newValue) {
+            console.log('🔄 Storage event - language changed in another tab:', e.newValue);
+            if (window.translationManager) {
+                window.translationManager.setLanguage(e.newValue);
+            }
+        }
+    });
 } else {
     console.log('⚠️ TranslationManager already exists');
 }

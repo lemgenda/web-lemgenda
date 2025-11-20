@@ -1,27 +1,93 @@
 {
     "name": "Lemgenda - Web Development & IT Services",
     "short_name": "Lemgenda",
-    "description": "Professional web development, SEO optimization, and IT services in Sisak, Croatia",
+    "description": "Professional web development, SEO optimization, logo design, and IT services in Sisak, Croatia",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#031427",
     "theme_color": "#031427",
     "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "hr",
+    "categories": [
+        "business",
+        "productivity",
+        "utilities"
+    ],
     "icons": [
+        {
+            "src": "images/favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/favicon.png",
+            "sizes": "32x32",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/favicon.ico",
+            "sizes": "48x48",
+            "type": "image/x-icon",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/icon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
         {
             "src": "images/icon-192x192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
         },
         {
             "src": "images/icon-512x512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         }
     ],
-    "categories": [
-        "business",
-        "technology",
-        "web development"
+    "screenshots": [
+        {
+            "src": "images/screenshots/mobile-screenshot.jpg",
+            "sizes": "375x667",
+            "type": "image/jpeg",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "images/screenshots/desktop-screenshot.jpg",
+            "sizes": "1280x720",
+            "type": "image/jpeg",
+            "form_factor": "wide"
+        }
     ]
 }

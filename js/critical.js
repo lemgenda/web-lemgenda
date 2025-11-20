@@ -6,7 +6,6 @@ class CriticalApp {
     }
 
     getBasePath() {
-        // Delegate to TranslationManager for consistent path resolution
         if (window.translationManager && window.translationManager.getBasePath) {
             return window.translationManager.getBasePath();
         }
@@ -17,11 +16,7 @@ class CriticalApp {
         if (this.initialized) return;
 
         console.log('🚀 CriticalApp initializing...');
-
-        // Generate components first (they use data-translate attributes)
         await this.generateSharedComponents();
-
-        // Initialize functionality that doesn't depend on translations
         this.initTheme();
         this.initNavigation();
         this.initLanguageSwitcher();
@@ -29,12 +24,11 @@ class CriticalApp {
         this.initModals();
         this.initAccessibility();
         this.initContactForms();
-        this.initBasicFAQ();
 
-        // Initialize cookie consent with proper delay
+        // Initialize cookie consent after a short delay
         setTimeout(() => {
             this.initCookieConsent();
-        }, 2000);
+        }, 1000);
 
         this.initialized = true;
         console.log('✅ CriticalApp initialized successfully');
@@ -61,35 +55,31 @@ class CriticalApp {
             return;
         }
 
-        const isInPagesFolder = window.location.pathname.includes('/pages/');
-        const isInServicesFolder = window.location.pathname.includes('/services/');
+        console.log('🏗️ Generating header...');
+
+        const currentPath = window.location.pathname;
         const basePath = this.basePath;
 
+        // PATH VARIJABLE
         let kontaktPath;
-        if (isInPagesFolder) {
+        if (currentPath.includes('/stranice/')) {
             kontaktPath = 'kontakt.html';
-        } else if (isInServicesFolder) {
-            kontaktPath = '../pages/kontakt.html';
+        } else if (currentPath.includes('/web-usluge/') || currentPath.includes('/usluge/')) {
+            kontaktPath = '../stranice/kontakt.html';
         } else {
-            kontaktPath = 'pages/kontakt.html';
+            kontaktPath = 'stranice/kontakt.html';
         }
 
-        let servicesBasePath;
-        if (isInPagesFolder) {
-            servicesBasePath = '../services/';
-        } else if (isInServicesFolder) {
-            servicesBasePath = './';
+        let webUslugeBasePath, uslugeBasePath;
+        if (currentPath.includes('/stranice/')) {
+            webUslugeBasePath = '../web-usluge/';
+            uslugeBasePath = '../usluge/';
+        } else if (currentPath.includes('/web-usluge/') || currentPath.includes('/usluge/')) {
+            webUslugeBasePath = './';
+            uslugeBasePath = '../usluge/';
         } else {
-            servicesBasePath = 'services/';
-        }
-
-        let landingPath;
-        if (isInPagesFolder) {
-            landingPath = 'landing-page.html';
-        } else if (isInServicesFolder) {
-            landingPath = '../pages/landing-page.html';
-        } else {
-            landingPath = 'pages/landing-page.html';
+            webUslugeBasePath = 'web-usluge/';
+            uslugeBasePath = 'usluge/';
         }
 
         headerContainer.innerHTML = `
@@ -112,38 +102,64 @@ class CriticalApp {
                     <ul class="nav-menu" id="nav-menu">
                         <li><a href="${basePath}index.html" class="nav-link" data-translate="navigation.home">Početna</a></li>
 
+                        <!-- WEB USLUGE DROPDOWN -->
                         <li class="nav-item-dropdown">
-                            <a href="#services" class="nav-link nav-link-dropdown" aria-expanded="false" aria-haspopup="true">
-                                <span data-translate="navigation.services">Usluge</span>
+                            <a href="#web-usluge" class="nav-link nav-link-dropdown" aria-expanded="false" aria-haspopup="true">
+                                <span data-translate="navigation.webServices">Web Usluge</span>
                                 <i class="fas fa-chevron-down dropdown-arrow" aria-hidden="true"></i>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li class="dropdown-category">
-                                    <span class="dropdown-category-title" data-translate="servicesMenu.webVisibility">WEB VISIBILITY SERVICES</span>
+                                    <span class="dropdown-category-title" data-translate="servicesMenu.webDevelopmentCategory">WEB RAZVOJ</span>
                                 </li>
-                                <li><a href="${servicesBasePath}web-development.html" class="dropdown-link" data-translate="servicesMenu.webDevelopment">Izrada Web Stranica</a></li>
-                                <li><a href="${servicesBasePath}seo.html" class="dropdown-link" data-translate="servicesMenu.seo">SEO / SEM</a></li>
+                                <li><a href="${webUslugeBasePath}web-razvoj.html" class="dropdown-link" data-translate="servicesMenu.webDevelopment">Izrada Web Stranica</a></li>
+                                <li><a href="${webUslugeBasePath}e-commerce-razvoj.html" class="dropdown-link" data-translate="servicesMenu.ecommerce">E-commerce Razvoj</a></li>
 
                                 <li class="dropdown-divider"></li>
 
                                 <li class="dropdown-category">
-                                    <span class="dropdown-category-title" data-translate="servicesMenu.specialized">SPECIJALIZIRANE USLUGE</span>
+                                    <span class="dropdown-category-title" data-translate="servicesMenu.digitalMarketing">DIGITALNI MARKETING</span>
                                 </li>
-                                <li><a href="${servicesBasePath}logo-design.html" class="dropdown-link" data-translate="servicesMenu.logoDesign">Dizajn Logotipa</a></li>
-                                <li><a href="${servicesBasePath}custom-development.html" class="dropdown-link" data-translate="servicesMenu.customDevelopment">Prilagođeni Razvoj</a></li>
+                                <li><a href="${webUslugeBasePath}seo.html" class="dropdown-link" data-translate="servicesMenu.seo">SEO Optimizacija</a></li>
+                                <li><a href="${webUslugeBasePath}sem.html" class="dropdown-link" data-translate="servicesMenu.sem">SEM Marketing</a></li>
 
                                 <li class="dropdown-divider"></li>
 
                                 <li class="dropdown-category">
-                                    <span class="dropdown-category-title" data-translate="servicesMenu.service">SERVISNE USLUGE</span>
+                                    <span class="dropdown-category-title" data-translate="servicesMenu.designCategory">DIZJN & PRILAGODBE</span>
                                 </li>
-                                <li><a href="${servicesBasePath}data-cleaning.html" class="dropdown-link" data-translate="servicesMenu.dataCleaning">Čišćenje Podataka</a></li>
-                                <li><a href="${servicesBasePath}os-installation.html" class="dropdown-link" data-translate="servicesMenu.osInstallation">Instalacija OS-a</a></li>
+                                <li><a href="${webUslugeBasePath}logo-design.html" class="dropdown-link" data-translate="servicesMenu.logoDesign">Dizajn Logotipa</a></li>
+                                <li><a href="${webUslugeBasePath}pristupacnost.html" class="dropdown-link" data-translate="servicesMenu.accessibility">Pristupačnost (a11y)</a></li>
                             </ul>
                         </li>
 
-                        <li><a href="${basePath}portfolio.html" class="nav-link" data-translate="navigation.portfolio">Portfolio</a></li>
-                        <li><a href="${landingPath}" class="nav-link cta-link" style="background: var(--gold-color); color: var(--primary-color); font-weight: bold;" data-translate="navigation.freeConsultation">Besplatna Konsultacija</a></li>
+                        <!-- OSTALE USLUGE DROPDOWN -->
+                        <li class="nav-item-dropdown">
+                            <a href="#ostale-usluge" class="nav-link nav-link-dropdown" aria-expanded="false" aria-haspopup="true">
+                                <span data-translate="navigation.otherServices">Ostale Usluge</span>
+                                <i class="fas fa-chevron-down dropdown-arrow" aria-hidden="true"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="dropdown-category">
+                                    <span class="dropdown-category-title" data-translate="servicesMenu.specializedDevelopment">SPECIJALIZIRANI RAZVOJ</span>
+                                </li>
+                                <li><a href="${uslugeBasePath}prilagodeni-razvoj.html" class="dropdown-link" data-translate="servicesMenu.customDevelopment">Prilagođeni Razvoj</a></li>
+
+                                <li class="dropdown-divider"></li>
+
+                                <li class="dropdown-category">
+                                    <span class="dropdown-category-title" data-translate="servicesMenu.serviceCategory">SERVISNE USLUGE</span>
+                                </li>
+                                <li><a href="${uslugeBasePath}ciscenje-smartphona.html" class="dropdown-link" data-translate="servicesMenu.phoneCleaning">Čišćenje Smartphona</a></li>
+                                <li><a href="${uslugeBasePath}ciscenje-racunala.html" class="dropdown-link" data-translate="servicesMenu.pcCleaning">Čišćenje Računala</a></li>
+                                <li><a href="${uslugeBasePath}os-instalacija.html" class="dropdown-link" data-translate="servicesMenu.osInstallation">Instalacija OS-a</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- PORTFOLIO LINK -->
+                        <li><a href="${basePath}stranice/pregled-radova.html" class="nav-link" data-translate="navigation.portfolio">Portfolio</a></li>
+
+                        <!-- KONTAKT LINK -->
                         <li><a href="${kontaktPath}" class="nav-link" data-translate="navigation.contact">Kontakt</a></li>
                     </ul>
                 </nav>
@@ -168,6 +184,8 @@ class CriticalApp {
         </div>
     </header>
     `;
+
+        console.log('✅ Header generated successfully');
     }
 
     generateFooter() {
@@ -177,67 +195,67 @@ class CriticalApp {
             return;
         }
 
-        const isInPagesFolder = window.location.pathname.includes('/pages/');
-        const isInServicesFolder = window.location.pathname.includes('/services/');
+        const currentPath = window.location.pathname;
         const basePath = this.basePath;
 
         let kontaktPath;
-        if (isInPagesFolder) {
+        if (currentPath.includes('/stranice/')) {
             kontaktPath = 'kontakt.html';
-        } else if (isInServicesFolder) {
-            kontaktPath = '../pages/kontakt.html';
+        } else if (currentPath.includes('/web-usluge/') || currentPath.includes('/usluge/')) {
+            kontaktPath = '../stranice/kontakt.html';
         } else {
-            kontaktPath = 'pages/kontakt.html';
+            kontaktPath = 'stranice/kontakt.html';
         }
 
+        // ✅ ISPRAVLJENI LINKOVI
         let privacyPath, termsPath;
-        if (isInPagesFolder) {
-            privacyPath = 'privacy-policy.html';
-            termsPath = 'terms-of-service.html';
-        } else if (isInServicesFolder) {
-            privacyPath = '../pages/privacy-policy.html';
-            termsPath = '../pages/terms-of-service.html';
+        if (currentPath.includes('/stranice/')) {
+            privacyPath = 'politika-privatnosti.html';
+            termsPath = 'uvjeti-koristenja.html';
+        } else if (currentPath.includes('/web-usluge/') || currentPath.includes('/usluge/')) {
+            privacyPath = '../stranice/politika-privatnosti.html';
+            termsPath = '../stranice/uvjeti-koristenja.html';
         } else {
-            privacyPath = 'pages/privacy-policy.html';
-            termsPath = 'pages/terms-of-service.html';
+            privacyPath = 'stranice/politika-privatnosti.html';
+            termsPath = 'stranice/uvjeti-koristenja.html';
         }
 
         footerContainer.innerHTML = `
-        <footer class="footer" role="contentinfo">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-brand">
-                        <div class="footer-logo">
-                            <img src="${basePath}images/lemgenda-logo.svg" alt="Lemgenda Web Development" width="150" height="40">
-                        </div>
-                        <p>Professional web development and IT services in Sisak, Croatia.</p>
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="${basePath}images/lemgenda-logo.svg" alt="Lemgenda Web Development" width="150" height="40">
                     </div>
-
-                    <div class="footer-links">
-                        <h3 data-translate="footer.quickLinks">Quick Links</h3>
-                        <ul>
-                            <li><a href="${basePath}index.html" data-translate="navigation.home">Home</a></li>
-                            <li><a href="${basePath}index.html#services" data-translate="navigation.services">Services</a></li>
-                            <li><a href="${basePath}index.html#portfolio" data-translate="navigation.portfolio">Portfolio</a></li>
-                            <li><a href="${kontaktPath}" data-translate="navigation.contact">Contact</a></li>
-                            <li><a href="${privacyPath}" data-translate="privacy.title">Privacy Policy</a></li>
-                            <li><a href="${termsPath}" data-translate="terms.title">Terms of Service</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-contact">
-                        <h3 data-translate="contact.info">Contact Information</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> Ulica Jurja Križanića 6, 44000 Sisak</p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:+385953831325">+385 95 383 1325</a></p>
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:lemgenda.obrt@gmail.com">lemgenda.obrt@gmail.com</a></p>
-                    </div>
+                    <p data-translate="footer.brandDescription">Professional web development and IT services in Sisak, Croatia.</p>
                 </div>
 
-                <div class="footer-bottom">
-                    <p data-translate="footer.copyright">© 2025 Lemgenda - Web Development & IT Services. All rights reserved.</p>
+                <div class="footer-links">
+                    <h3 data-translate="footer.quickLinks">Quick Links</h3>
+                    <ul>
+                        <li><a href="${basePath}index.html" data-translate="navigation.home">Home</a></li>
+                        <li><a href="${basePath}index.html#services" data-translate="navigation.services">Usluge</a></li>
+                        <li><a href="${basePath}stranice/pregled-radova.html" data-translate="navigation.portfolio">Portfolio</a></li>
+                        <li><a href="${kontaktPath}" data-translate="navigation.contact">Contact</a></li>
+                        <li><a href="${privacyPath}" data-translate="footer.privacyPolicy">Privacy Policy</a></li>
+                        <li><a href="${termsPath}" data-translate="footer.termsOfService">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3 data-translate="contact.info">Contact Information</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <span data-translate="contact.addressContent">Ulica Jurja Križanića 6, 44000 Sisak</span></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+385953831325">+385 95 383 1325</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:lemgenda.obrt@gmail.com">lemgenda.obrt@gmail.com</a></p>
                 </div>
             </div>
-        </footer>
+
+            <div class="footer-bottom">
+                <p data-translate="footer.copyright">© 2025 Lemgenda - Web Development & IT Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
     `;
     }
 
@@ -251,79 +269,121 @@ class CriticalApp {
         console.log('📦 Generating modals...');
 
         modalsContainer.innerHTML = `
-            <!-- Cookie Consent Modal -->
-            <div id="cookie-consent" class="modal" aria-hidden="true" aria-labelledby="cookie-consent-title">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 id="cookie-consent-title" data-translate="cookie.title">Cookie Consent</h2>
-                        <p data-translate="cookie.message">We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic.</p>
+        <!-- Cookie Consent Modal -->
+        <div id="cookie-consent" class="modal" aria-hidden="true" aria-labelledby="cookie-consent-title">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="cookie-consent-title" data-translate="cookie.title">Cookie Consent</h2>
+                    <p data-translate="cookie.message">We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic.</p>
+                </div>
+                <div class="modal-body">
+                    <div class="cookie-options">
+                        <label class="cookie-option">
+                            <input type="checkbox" id="necessary-cookies" checked disabled>
+                            <span data-translate="cookie.necessary">Necessary Cookies</span>
+                            <small data-translate="cookie.necessaryDesc">Required for the website to function properly</small>
+                        </label>
+                        <label class="cookie-option">
+                            <input type="checkbox" id="analytics-cookies">
+                            <span data-translate="cookie.analytics">Analytics Cookies</span>
+                            <small data-translate="cookie.analyticsDesc">Help us understand how visitors interact with our website</small>
+                        </label>
+                        <label class="cookie-option">
+                            <input type="checkbox" id="marketing-cookies">
+                            <span data-translate="cookie.marketing">Marketing Cookies</span>
+                            <small data-translate="cookie.marketingDesc">Used to track visitors across websites for marketing</small>
+                        </label>
                     </div>
-                    <div class="modal-body">
-                        <div class="cookie-options">
-                            <label class="cookie-option">
-                                <input type="checkbox" id="necessary-cookies" checked disabled>
-                                <span data-translate="cookie.necessary">Necessary Cookies</span>
-                                <small data-translate="cookie.necessaryDesc">Required for the website to function properly</small>
-                            </label>
-                            <label class="cookie-option">
-                                <input type="checkbox" id="analytics-cookies">
-                                <span data-translate="cookie.analytics">Analytics Cookies</span>
-                                <small data-translate="cookie.analyticsDesc">Help us understand how visitors interact with our website</small>
-                            </label>
-                            <label class="cookie-option">
-                                <input type="checkbox" id="marketing-cookies">
-                                <span data-translate="cookie.marketing">Marketing Cookies</span>
-                                <small data-translate="cookie.marketingDesc">Used to track visitors across websites for marketing</small>
+                </div>
+                <div class="modal-footer">
+                    <button id="cookie-customize" class="btn btn-secondary" data-translate="cookie.customize">Save Preferences</button>
+                    <button id="cookie-accept-all" class="btn btn-primary" data-translate="cookie.acceptAll">Accept All</button>
+                </div>
+                <button class="modal-close" aria-label="Close cookie consent">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contact Modal -->
+        <div id="contact-modal" class="modal" aria-hidden="true" aria-labelledby="contact-modal-title">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="contact-modal-title" data-translate="contact.title">Contact Lemgenda</h2>
+                    <p data-translate="contact.text">Ready to start your project? Get in touch with us today!</p>
+                </div>
+                <div class="modal-body">
+                    <form id="contact-modal-form" novalidate aria-label="Contact form">
+                        <div class="form-group">
+                            <label for="contact-modal-name" data-translate="contact.name">Name *</label>
+                            <input type="text" id="contact-modal-name" name="name" required
+                                   aria-required="true" data-translate-placeholder="contact.namePlaceholder">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-modal-email" data-translate="contact.email">Email *</label>
+                            <input type="email" id="contact-modal-email" name="email" required
+                                   aria-required="true" data-translate-placeholder="contact.emailPlaceholder">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-modal-phone" data-translate="contact.phone">Phone</label>
+                            <input type="tel" id="contact-modal-phone" name="phone"
+                                   data-translate-placeholder="contact.phonePlaceholder">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-modal-company" data-translate="contact.company">Company</label>
+                            <input type="text" id="contact-modal-company" name="company"
+                                   data-translate-placeholder="contact.companyPlaceholder">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-modal-subject" data-translate="contact.subject">Subject *</label>
+                            <input type="text" id="contact-modal-subject" name="subject" required
+                                   aria-required="true" data-translate-placeholder="contact.subjectPlaceholder">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-modal-message" data-translate="contact.message">Message *</label>
+                            <textarea id="contact-modal-message" name="message" rows="5" required
+                                      aria-required="true" data-translate-placeholder="contact.messagePlaceholder"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="contact-modal-privacy" name="privacy" required>
+                                <span data-translate="contact.privacyAgreement">I agree to the privacy policy and terms of service</span>
                             </label>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="cookie-customize" class="btn btn-secondary" data-translate="cookie.customize">Save Preferences</button>
-                        <button id="cookie-accept-all" class="btn btn-primary" data-translate="cookie.acceptAll">Accept All</button>
-                    </div>
-                    <button class="modal-close" aria-label="Close cookie consent">
-                        <i class="fas fa-times"></i>
-                    </button>
+                        <button type="submit" class="btn btn-primary" data-translate="contact.sendMessage">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            <span data-translate="contact.sendMessage">Send Message</span>
+                        </button>
+                    </form>
                 </div>
-            </div>
-
-            <!-- Contact Modal -->
-            <div id="contact-modal" class="modal" aria-hidden="true" aria-labelledby="contact-modal-title">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 id="contact-modal-title" data-translate="contact.title">Contact Lemgenda</h2>
-                        <p data-translate="contact.text">Ready to start your project? Get in touch with us today!</p>
+                <div class="modal-footer">
+                    <div class="contact-info">
+                        <h4 data-translate="contact.info">Contact Information</h4>
+                        <div class="contact-details">
+                            <p>
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                <strong data-translate="contact.address">Address:</strong>
+                                <span data-translate="contact.addressContent">Ulica Jurja Križanića 6, 44000 Sisak</span>
+                            </p>
+                            <p>
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                                <strong data-translate="contact.phone">Phone:</strong>
+                                <a href="tel:+385953831325">+385 95 383 1325</a>
+                            </p>
+                            <p>
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <strong data-translate="contact.email">Email:</strong>
+                                <a href="mailto:lemgenda.obrt@gmail.com">lemgenda.obrt@gmail.com</a>
+                            </p>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <form id="contact-modal-form" novalidate aria-label="Contact form">
-                            <div class="form-group">
-                                <label for="contact-modal-name" data-translate="contact.name">Name *</label>
-                                <input type="text" id="contact-modal-name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact-modal-email" data-translate="contact.email">Email *</label>
-                                <input type="email" id="contact-modal-email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact-modal-subject" data-translate="contact.subject">Subject *</label>
-                                <input type="text" id="contact-modal-subject" name="subject" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact-modal-message" data-translate="contact.message">Message *</label>
-                                <textarea id="contact-modal-message" name="message" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary" data-translate="contact.sendMessage">
-                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-                    <button class="modal-close" aria-label="Close contact modal">
-                        <i class="fas fa-times"></i>
-                    </button>
                 </div>
+                <button class="modal-close" aria-label="Close contact modal">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-        `;
+        </div>
+    `;
 
         console.log('✅ Modals generated successfully');
     }
@@ -443,27 +503,52 @@ class CriticalApp {
         languageButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const lang = button.getAttribute('data-lang');
+                console.log(`🌐 Language button clicked: ${lang}`);
+
                 if (window.translationManager) {
                     window.translationManager.setLanguage(lang);
                 }
+
+                // Close dropdown
                 languageSwitcher.classList.remove('open');
+                languageBtn.setAttribute('aria-expanded', 'false');
             });
         });
 
+        // Toggle dropdown on button click
+        languageBtn.addEventListener('click', () => {
+            const isOpen = languageSwitcher.classList.contains('open');
+            languageSwitcher.classList.toggle('open', !isOpen);
+            languageBtn.setAttribute('aria-expanded', !isOpen);
+        });
+
+        // Keyboard navigation
         languageBtn.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
                 e.preventDefault();
                 languageSwitcher.classList.add('open');
+                languageBtn.setAttribute('aria-expanded', 'true');
                 const firstItem = languageSwitcher.querySelector('.language-dropdown button');
                 if (firstItem) firstItem.focus();
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!languageSwitcher.contains(e.target)) {
+                languageSwitcher.classList.remove('open');
+                languageBtn.setAttribute('aria-expanded', 'false');
             }
         });
 
         languageSwitcher.addEventListener('focusout', (e) => {
             if (!languageSwitcher.contains(e.relatedTarget)) {
                 languageSwitcher.classList.remove('open');
+                languageBtn.setAttribute('aria-expanded', 'false');
             }
         });
+
+        console.log('✅ Language switcher initialized');
     }
 
     initContactForms() {
@@ -471,8 +556,8 @@ class CriticalApp {
         if (contactModalForm) {
             contactModalForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                if (this.validateBasicForm(contactModalForm)) {
-                    this.submitBasicForm(contactModalForm, 'contact-modal');
+                if (this.validateContactModalForm(contactModalForm)) {
+                    this.submitContactModalForm(contactModalForm);
                 }
             });
         }
@@ -498,6 +583,50 @@ class CriticalApp {
         }
 
         console.log('✅ Contact forms initialized');
+    }
+
+    validateContactModalForm(form) {
+        let isValid = true;
+        const requiredFields = form.querySelectorAll('[required]');
+
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.setAttribute('aria-invalid', 'true');
+                field.style.borderColor = 'var(--error-color)';
+            } else {
+                field.setAttribute('aria-invalid', 'false');
+                field.style.borderColor = '';
+            }
+        });
+
+        // Validate email format
+        const emailField = form.querySelector('input[type="email"]');
+        if (emailField && emailField.value.trim()) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailField.value)) {
+                isValid = false;
+                emailField.setAttribute('aria-invalid', 'true');
+                emailField.style.borderColor = 'var(--error-color)';
+            }
+        }
+
+        return isValid;
+    }
+
+    submitContactModalForm(form) {
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+
+        console.log('📧 Contact modal form submitted:', data);
+        this.showNotification(this.getTranslation('contact.success'), 'success');
+        form.reset();
+
+        // Close modal after successful submission
+        const contactModal = document.getElementById('contact-modal');
+        if (contactModal) {
+            this.hideModal(contactModal);
+        }
     }
 
     validateBasicForm(form) {
@@ -527,73 +656,114 @@ class CriticalApp {
         form.reset();
     }
 
-    initBasicFAQ() {
-        const faqQuestions = document.querySelectorAll('.faq-question');
-
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const isExpanded = question.getAttribute('aria-expanded') === 'true';
-                const answer = document.getElementById(question.getAttribute('aria-controls'));
-
-                question.setAttribute('aria-expanded', !isExpanded);
-                if (answer) {
-                    answer.setAttribute('aria-hidden', isExpanded);
-                }
-            });
-        });
-
-        console.log('✅ Basic FAQ initialized');
-    }
-
     initCookieConsent() {
         console.log('🍪 Initializing cookie consent...');
 
-        // Ensure cookie modal exists first
+        // Create cookie modal immediately
         this.ensureCookieModal();
 
-        // Give DOM time to be ready
+        // Initialize with a slight delay to ensure DOM is ready
         setTimeout(() => {
             const cookieConsent = document.getElementById('cookie-consent');
-
             if (!cookieConsent) {
-                console.error('❌ Cookie consent modal not found after creation!');
-                this.ensureCookieModal(); // Try again
-                setTimeout(() => this.initCookieConsent(), 500); // Retry
+                console.error('❌ Cookie consent modal not found!');
+                this.ensureCookieModal();
                 return;
             }
 
-            // Check if user already made a choice
+            // Check if user has already made a choice
             const cookieChoice = localStorage.getItem('cookieConsent');
             console.log('📝 Existing cookie choice:', cookieChoice);
 
             if (!cookieChoice) {
-                console.log('👤 New user - showing cookie consent');
-                // Show after a short delay to ensure everything is loaded
+                console.log('👤 New user - will show cookie consent');
+                // Show after page load
                 setTimeout(() => {
                     this.showCookieConsent();
-                }, 3000); // Show after 3 seconds
+                }, 3000);
             } else {
-                console.log('👤 Returning user - applying preferences');
+                console.log('👤 Returning user - applying saved preferences');
                 try {
                     const preferences = JSON.parse(cookieChoice);
                     this.applyCookiePreferences(preferences);
                 } catch (e) {
                     console.error('❌ Error parsing saved preferences:', e);
-                    // Show consent modal if preferences are corrupted
+                    // Clear invalid preference and show consent modal
+                    localStorage.removeItem('cookieConsent');
                     setTimeout(() => {
                         this.showCookieConsent();
                     }, 3000);
                 }
             }
 
-            // Initialize event listeners
             this.initCookieEventListeners();
-
             console.log('✅ Cookie consent initialized successfully');
-        }, 1000); // Wait 1 second before starting
+        }, 1000);
     }
 
-    // Add this missing method to handle event listeners:
+    ensureCookieModal() {
+        let cookieConsent = document.getElementById('cookie-consent');
+        if (!cookieConsent) {
+            console.log('🛠️ Creating cookie modal...');
+
+            // Ensure modals container exists
+            let modalsContainer = document.getElementById('modals-container');
+            if (!modalsContainer) {
+                console.log('📦 Creating modals container...');
+                modalsContainer = document.createElement('div');
+                modalsContainer.id = 'modals-container';
+                document.body.appendChild(modalsContainer);
+            }
+
+            // Create cookie modal
+            cookieConsent = document.createElement('div');
+            cookieConsent.id = 'cookie-consent';
+            cookieConsent.className = 'modal';
+            cookieConsent.setAttribute('aria-hidden', 'true');
+            cookieConsent.setAttribute('aria-labelledby', 'cookie-consent-title');
+
+            cookieConsent.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 id="cookie-consent-title" data-translate="cookie.title">Cookie Consent</h2>
+                        <p data-translate="cookie.message">We use cookies to enhance your browsing experience.</p>
+                    </div>
+                    <div class="modal-body">
+                        <div class="cookie-options">
+                            <label class="cookie-option">
+                                <input type="checkbox" id="necessary-cookies" checked disabled>
+                                <span data-translate="cookie.necessary">Necessary Cookies</span>
+                                <small data-translate="cookie.necessaryDesc">Required for website functionality</small>
+                            </label>
+                            <label class="cookie-option">
+                                <input type="checkbox" id="analytics-cookies">
+                                <span data-translate="cookie.analytics">Analytics Cookies</span>
+                                <small data-translate="cookie.analyticsDesc">Help us understand visitor interactions</small>
+                            </label>
+                            <label class="cookie-option">
+                                <input type="checkbox" id="marketing-cookies">
+                                <span data-translate="cookie.marketing">Marketing Cookies</span>
+                                <small data-translate="cookie.marketingDesc">Used for tracking across websites</small>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="cookie-customize" class="btn btn-secondary" data-translate="cookie.customize">Save Preferences</button>
+                        <button id="cookie-accept-all" class="btn btn-primary" data-translate="cookie.acceptAll">Accept All</button>
+                    </div>
+                    <button class="modal-close" aria-label="Close cookie consent">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+
+            modalsContainer.appendChild(cookieConsent);
+            console.log('✅ Cookie modal created successfully');
+        }
+
+        return cookieConsent;
+    }
+
     initCookieEventListeners() {
         setTimeout(() => {
             const cookieAcceptAll = document.getElementById('cookie-accept-all');
@@ -601,7 +771,6 @@ class CriticalApp {
             const modalClose = document.querySelector('#cookie-consent .modal-close');
             const cookieConsent = document.getElementById('cookie-consent');
 
-            // Accept All button
             if (cookieAcceptAll) {
                 cookieAcceptAll.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -613,7 +782,6 @@ class CriticalApp {
                 console.error('❌ cookie-accept-all button not found');
             }
 
-            // Customize button
             if (cookieCustomize) {
                 cookieCustomize.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -625,7 +793,6 @@ class CriticalApp {
                 console.error('❌ cookie-customize button not found');
             }
 
-            // Close button
             if (modalClose) {
                 modalClose.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -637,7 +804,6 @@ class CriticalApp {
                 console.error('❌ Cookie modal close button not found');
             }
 
-            // Backdrop click
             if (cookieConsent) {
                 cookieConsent.addEventListener('click', (e) => {
                     if (e.target === cookieConsent) {
@@ -647,13 +813,10 @@ class CriticalApp {
                 });
             }
 
-            // Initialize cookie options state
             this.initCookieOptions();
-
         }, 100);
     }
 
-    // ADD THIS MISSING METHOD:
     initCookieOptions() {
         setTimeout(() => {
             const necessaryCookies = document.getElementById('necessary-cookies');
@@ -677,71 +840,6 @@ class CriticalApp {
         }, 200);
     }
 
-    ensureCookieModal() {
-        let cookieConsent = document.getElementById('cookie-consent');
-
-        if (!cookieConsent) {
-            console.log('🛠️ Creating cookie modal...');
-            const modalsContainer = document.getElementById('modals-container');
-
-            if (!modalsContainer) {
-                console.error('❌ Modals container not found for cookie modal creation');
-                // Create modals container if it doesn't exist
-                const newModalsContainer = document.createElement('div');
-                newModalsContainer.id = 'modals-container';
-                document.body.appendChild(newModalsContainer);
-                this.ensureCookieModal(); // Try again
-                return;
-            }
-
-            const cookieModal = document.createElement('div');
-            cookieModal.id = 'cookie-consent';
-            cookieModal.className = 'modal';
-            cookieModal.setAttribute('aria-hidden', 'true');
-            cookieModal.setAttribute('aria-labelledby', 'cookie-consent-title');
-
-            cookieModal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 id="cookie-consent-title" data-translate="cookie.title">Cookie Consent</h2>
-                        <p data-translate="cookie.message">We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic.</p>
-                    </div>
-                    <div class="modal-body">
-                        <div class="cookie-options">
-                            <label class="cookie-option">
-                                <input type="checkbox" id="necessary-cookies" checked disabled>
-                                <span data-translate="cookie.necessary">Necessary Cookies</span>
-                                <small data-translate="cookie.necessaryDesc">Required for the website to function properly</small>
-                            </label>
-                            <label class="cookie-option">
-                                <input type="checkbox" id="analytics-cookies">
-                                <span data-translate="cookie.analytics">Analytics Cookies</span>
-                                <small data-translate="cookie.analyticsDesc">Help us understand how visitors interact with our website</small>
-                            </label>
-                            <label class="cookie-option">
-                                <input type="checkbox" id="marketing-cookies">
-                                <span data-translate="cookie.marketing">Marketing Cookies</span>
-                                <small data-translate="cookie.marketingDesc">Used to track visitors across websites for marketing</small>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="cookie-customize" class="btn btn-secondary" data-translate="cookie.customize">Save Preferences</button>
-                        <button id="cookie-accept-all" class="btn btn-primary" data-translate="cookie.acceptAll">Accept All</button>
-                    </div>
-                    <button class="modal-close" aria-label="Close cookie consent">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            `;
-
-            modalsContainer.appendChild(cookieModal);
-            console.log('✅ Cookie modal created successfully');
-        } else {
-            console.log('✅ Cookie modal already exists');
-        }
-    }
-
     showCookieConsent() {
         const cookieConsent = document.getElementById('cookie-consent');
         console.log('🎪 Showing cookie consent:', cookieConsent);
@@ -749,24 +847,11 @@ class CriticalApp {
         if (!cookieConsent) {
             console.error('❌ Cookie consent modal not found for showing');
             this.ensureCookieModal();
-            // Try again after modal is created
             setTimeout(() => this.showCookieConsent(), 500);
             return;
         }
 
-        cookieConsent.classList.add('active');
-        cookieConsent.setAttribute('aria-hidden', 'false');
-
-        // Prevent body scroll
-        document.body.style.overflow = 'hidden';
-        document.body.classList.add('modal-open');
-
-        // Focus management for accessibility
-        setTimeout(() => {
-            const firstButton = cookieConsent.querySelector('#cookie-customize, #cookie-accept-all');
-            if (firstButton) firstButton.focus();
-        }, 300);
-
+        this.showModal(cookieConsent);
         console.log('✅ Cookie consent shown successfully');
     }
 
@@ -775,15 +860,7 @@ class CriticalApp {
         console.log('🎪 Hiding cookie consent');
 
         if (cookieConsent) {
-            cookieConsent.classList.remove('active');
-            cookieConsent.setAttribute('aria-hidden', 'true');
-            document.body.classList.remove('modal-open');
-
-            // Only reset overflow if no other modals are active
-            const otherActiveModals = document.querySelectorAll('.modal.active');
-            if (otherActiveModals.length === 0) {
-                document.body.style.overflow = '';
-            }
+            this.hideModal(cookieConsent);
         }
     }
 
@@ -803,7 +880,6 @@ class CriticalApp {
 
     customizeCookies() {
         console.log('⚙️ Customizing cookies');
-
         const analyticsCookies = document.getElementById('analytics-cookies');
         const marketingCookies = document.getElementById('marketing-cookies');
 
@@ -938,6 +1014,18 @@ class CriticalApp {
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) this.hideModal(modal);
             });
+
+            // Add keyboard event listener for focus trapping
+            modal.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    this.hideModal(modal);
+                }
+
+                // Trap focus within modal when Tab is pressed
+                if (e.key === 'Tab' && modal.classList.contains('active')) {
+                    this.trapFocus(modal, e);
+                }
+            });
         });
 
         document.addEventListener('keydown', (e) => {
@@ -948,21 +1036,69 @@ class CriticalApp {
         });
     }
 
+    trapFocus(modal, event) {
+        const focusableElements = modal.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey) {
+            // Shift + Tab
+            if (document.activeElement === firstElement) {
+                lastElement.focus();
+                event.preventDefault();
+            }
+        } else {
+            // Tab
+            if (document.activeElement === lastElement) {
+                firstElement.focus();
+                event.preventDefault();
+            }
+        }
+    }
+
     showModal(modal) {
+        // Spremi trenutno fokusirani element
+        this.lastFocusedElement = document.activeElement;
+
         modal.classList.add('active');
         modal.setAttribute('aria-hidden', 'false');
+        modal.removeAttribute('inert');
         document.body.style.overflow = 'hidden';
         document.body.classList.add('modal-open');
+
+        // Trap focus inside modal
+        const focusableElements = modal.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusableElements.length > 0) {
+            setTimeout(() => {
+                focusableElements[0].focus();
+            }, 100);
+        }
     }
 
     hideModal(modal) {
         modal.classList.remove('active');
         modal.setAttribute('aria-hidden', 'true');
+        modal.setAttribute('inert', '');
         document.body.classList.remove('modal-open');
+
+        // Ukloni fokus sa close buttona prije nego što sakrijemo modal
+        const closeBtn = modal.querySelector('.modal-close');
+        if (closeBtn) {
+            closeBtn.blur();
+        }
 
         const otherActiveModals = document.querySelectorAll('.modal.active');
         if (otherActiveModals.length === 0) {
             document.body.style.overflow = '';
+            // Vrati fokus na prethodno aktivni element
+            if (this.lastFocusedElement) {
+                this.lastFocusedElement.focus();
+                this.lastFocusedElement = null;
+            }
         }
     }
 
@@ -1003,6 +1139,13 @@ class CriticalApp {
                 document.documentElement.classList.remove('reduced-motion');
             }
         });
+    }
+
+    getTranslation(key) {
+        if (window.translationManager && window.translationManager.getTranslation) {
+            return window.translationManager.getTranslation(key);
+        }
+        return key;
     }
 }
 

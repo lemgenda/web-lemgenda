@@ -36,14 +36,12 @@
     <link rel="manifest" href="../site.webmanifest">
 
     <!-- Scripts -->
+    <script src="../js/seo.js" defer></script>
     <!-- First: Translation Manager -->
     <script src="../js/translations.js" defer></script>
 
     <!-- Second: Critical App -->
     <script src="../js/critical.js" defer></script>
-
-    <!-- Third: App Initializer -->
-    <script src="../js/app-initializer.js" defer></script>
 </head>
 
 <body itemscope itemtype="https://schema.org/WebPage">
@@ -55,6 +53,7 @@
 
     <!-- Main Content -->
     <main id="main-content" role="main" itemprop="mainContentOfPage">
+        <nav id="breadcrumb-container" aria-label="Breadcrumb"></nav>
         <section class="content-page">
             <div class="container">
                 <h1 data-translate="terms.title">Terms of Service</h1>
