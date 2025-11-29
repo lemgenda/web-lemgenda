@@ -133,29 +133,6 @@ class CriticalApp {
                             </ul>
                         </li>
 
-                        <!-- OSTALE USLUGE DROPDOWN -->
-                        <li class="nav-item-dropdown">
-                            <a href="#ostale-usluge" class="nav-link nav-link-dropdown" aria-expanded="false" aria-haspopup="true">
-                                <span data-translate="navigation.otherServices">Ostale Usluge</span>
-                                <i class="fas fa-chevron-down dropdown-arrow" aria-hidden="true"></i>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="dropdown-category">
-                                    <span class="dropdown-category-title" data-translate="servicesMenu.specializedDevelopment">SPECIJALIZIRANI RAZVOJ</span>
-                                </li>
-                                <li><a href="${uslugeBasePath}prilagodeni-razvoj.html" class="dropdown-link" data-translate="servicesMenu.customDevelopment">Prilagođeni Razvoj</a></li>
-
-                                <li class="dropdown-divider"></li>
-
-                                <li class="dropdown-category">
-                                    <span class="dropdown-category-title" data-translate="servicesMenu.serviceCategory">SERVISNE USLUGE</span>
-                                </li>
-                                <li><a href="${uslugeBasePath}ciscenje-smartphona.html" class="dropdown-link" data-translate="servicesMenu.phoneCleaning">Čišćenje Smartphona</a></li>
-                                <li><a href="${uslugeBasePath}ciscenje-racunala.html" class="dropdown-link" data-translate="servicesMenu.pcCleaning">Čišćenje Računala</a></li>
-                                <li><a href="${uslugeBasePath}os-instalacija.html" class="dropdown-link" data-translate="servicesMenu.osInstallation">Instalacija OS-a</a></li>
-                            </ul>
-                        </li>
-
                         <!-- PORTFOLIO LINK -->
                         <li><a href="${basePath}stranice/pregled-radova.html" class="nav-link" data-translate="navigation.portfolio">Portfolio</a></li>
 
