@@ -13,31 +13,21 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# REMOVE WWW (optional - choose one)
-# RewriteCond %{HTTP_HOST} ^www\.lemgenda\.hr [NC]
-# RewriteRule ^(.*)$ https://lemgenda.hr/$1 [L,R=301]
-
 # CUSTOM 404 ERROR PAGE
 ErrorDocument 404 /index.html
 
 # REMOVE .HTML EXTENSION
-# Only if the request is not for an existing directory
 RewriteCond %{REQUEST_FILENAME} !-d
-# Only if the .html file exists
 RewriteCond %{REQUEST_FILENAME}\.html -f
-# Rewrite to .html internally
 RewriteRule ^(.*)$ $1.html [L]
 
 # REDIRECT .HTML REQUESTS TO CLEAN URLs
-# If the request is for a .html file
 RewriteCond %{THE_REQUEST} \s/+(.*?)\.html[\s?] [NC]
-# Redirect to clean URL (without .html)
 RewriteRule ^ /%1 [R=301,L,NE]
 
-# CACHE CONTROL FOR BETTER PERFORMANCE
+# CACHE CONTROL
 <IfModule mod_expires.c>
     ExpiresActive On
-
     # Images
     ExpiresByType image/jpg "access plus 1 month"
     ExpiresByType image/jpeg "access plus 1 month"
@@ -46,17 +36,14 @@ RewriteRule ^ /%1 [R=301,L,NE]
     ExpiresByType image/webp "access plus 1 month"
     ExpiresByType image/svg+xml "access plus 1 month"
     ExpiresByType image/x-icon "access plus 1 year"
-
     # CSS, JavaScript
     ExpiresByType text/css "access plus 1 month"
     ExpiresByType text/javascript "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
-
+    ExpiresByType application/json "access plus 1 month"  # ADDED FOR JSON FILES
     # Fonts
     ExpiresByType font/woff "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
-    ExpiresByType application/font-woff "access plus 1 year"
-
     # HTML (no caching)
     ExpiresByType text/html "access plus 0 seconds"
 </IfModule>
@@ -72,17 +59,18 @@ RewriteRule ^ /%1 [R=301,L,NE]
     AddOutputFilterByType DEFLATE application/rss+xml
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json  # ADDED FOR JSON FILES
     AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
 
-# PREVENT ACCESS TO IMPORTANT FILES
-<FilesMatch "\.(env|json|config.js|md|gitignore|gitattributes|lock)$">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
+# ALLOW ACCESS TO JSON FILES IN TRANSLATIONS FOLDER
+<Files "*.json">
+    Order Allow,Deny
+    Allow from all
+</Files>
 
-# PROTECT .HTACCESS FILE
+# PROTECT .HTACCESS FILE (ONLY)
 <Files ".htaccess">
-    Order allow,deny
+    Order Allow,Deny
     Deny from all
 </Files>
