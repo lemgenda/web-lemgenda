@@ -1,0 +1,10 @@
+---
+deployment:
+  tasks:
+    - /bin/rm -rf /home/lemgenda/public_html/*
+    - /bin/cp -R * /home/lemgenda/public_html/
+    - /bin/cp -R .htaccess /home/lemgenda/public_html/
+    - /bin/cp -R manifest.json /home/lemgenda/public_html/
+    - /bin/cp -R site.webmanifest /home/lemgenda/public_html/
+    - /bin/cp -R sitemap.xml /home/lemgenda/public_html/
+    - /bin/cp -R robots.txt /home/lemgenda/public_html/
