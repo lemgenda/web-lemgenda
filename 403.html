@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>500 - Interna greška poslužitelja | Le Mgenda</title>
-    <meta name="description"
-        content="Došlo je do interne greške poslužitelja. Pokušajte ponovno kasnije ili kontaktirajte nas.">
+    <title>403 - Zabranjen pristup | Le Mgenda</title>
+    <meta name="description" content="Nemate dozvolu za pristup ovoj stranici ili resursu.">
 
     <!-- Fonts -->
     <link
@@ -77,23 +76,48 @@
     <!-- Main Content -->
     <main id="main-content">
         <!-- Hero Section -->
-        <section class="hero" style="background: linear-gradient(135deg, var(--primary-color) 0%, #4a0e0e 100%);">
+        <section class="hero" style="background: linear-gradient(135deg, var(--primary-color) 0%, #4a2c2c 100%);">
+            <div class="hero-animation">
+                <div class="die">
+                    <!-- D20 dice faces -->
+                    <div class="face face-1"></div>
+                    <div class="face face-2"></div>
+                    <div class="face face-3"></div>
+                    <div class="face face-4"></div>
+                    <div class="face face-5"></div>
+                    <div class="face face-6"></div>
+                    <div class="face face-7"></div>
+                    <div class="face face-8"></div>
+                    <div class="face face-9"></div>
+                    <div class="face face-10"></div>
+                    <div class="face face-11"></div>
+                    <div class="face face-12"></div>
+                    <div class="face face-13"></div>
+                    <div class="face face-14"></div>
+                    <div class="face face-15"></div>
+                    <div class="face face-16"></div>
+                    <div class="face face-17"></div>
+                    <div class="face face-18"></div>
+                    <div class="face face-19"></div>
+                    <div class="face face-20"></div>
+                </div>
+            </div>
             <div class="container">
                 <div class="hero-content">
                     <h1 class="hero-title">
-                        <span class="title-line">500</span>
-                        <span class="title-line">Interna greška poslužitelja</span>
+                        <span class="title-line">403</span>
+                        <span class="title-line">Zabranjen pristup</span>
                     </h1>
                     <p class="hero-subtitle">
-                        Došlo je do neočekivane greške na našoj stranici. Naš tim je obaviješten i radi na rješavanju
-                        problema.
+                        Nemate potrebne dozvole za pristup ovoj stranici. Ovo može biti zbog sigurnosnih ograničenja ili
+                        zaštite privatnosti.
                     </p>
                     <div class="hero-buttons">
                         <a href="/" class="btn btn-primary">
-                            <i class="fas fa-redo"></i> Osvježi stranicu
+                            <i class="fas fa-home"></i> Povratak na početnu
                         </a>
                         <a href="/kontakt" class="btn btn-secondary">
-                            <i class="fas fa-headset"></i> Hitna podrška
+                            <i class="fas fa-shield-alt"></i> Pitanja o sigurnosti
                         </a>
                     </div>
                 </div>
@@ -104,126 +128,132 @@
         <section class="content-page">
             <div class="container">
                 <div class="error-content">
-                    <h2>Što se dogodilo?</h2>
-                    <p style="font-size: 1.1rem; margin-bottom: 2rem;">
-                        Došlo je do interne greške poslužitelja (HTTP 500). Ova greška obično znači da postoji problem
-                        na našoj strani koji sprječava učitavanje stranice.
-                    </p>
+                    <h2>Zašto je pristup zabranjen?</h2>
 
                     <div class="benefits-grid" style="margin-top: 30px;">
                         <div class="benefit-item">
-                            <i class="fas fa-cogs"></i>
-                            <h3>Radimo na popravku</h3>
-                            <p>Naš tehnički tim je automatski obaviješten i radi na brzom rješavanju problema.</p>
+                            <i class="fas fa-ban"></i>
+                            <h3>Sigurnosno ograničenje</h3>
+                            <p>Ova stranica može biti dostupna samo određenim IP adresama ili mrežama.</p>
                         </div>
 
                         <div class="benefit-item">
-                            <i class="fas fa-clock"></i>
-                            <h3>Pokušajte ponovno</h3>
-                            <p>Greška može biti privremena. Pokušajte osvježiti stranicu za nekoliko minuta.</p>
+                            <i class="fas fa-user-shield"></i>
+                            <h3>Administratorski sadržaj</h3>
+                            <p>Pristup je ograničen na administratore i tehničke osoblje.</p>
                         </div>
 
                         <div class="benefit-item">
-                            <i class="fas fa-history"></i>
-                            <h3>Vratite se na sigurno</h3>
-                            <p>Koristite gumb "Povratak na početnu" ili navigaciju za pristup ostalim stranicama.</p>
+                            <i class="fas fa-folder"></i>
+                            <h3>Privatni direktorij</h3>
+                            <p>Pokušavate pristupiti direktoriju koji nije namijenjen javnom pristupu.</p>
                         </div>
 
                         <div class="benefit-item">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <h3>Prijavite problem</h3>
-                            <p>Ako se problem nastavi, kontaktirajte našu tehničku podršku za brzu pomoć.</p>
+                            <i class="fas fa-globe-europe"></i>
+                            <h3>Geografska blokada</h3>
+                            <p>Sadržaj može biti dostupan samo iz određenih geografskih regija.</p>
                         </div>
                     </div>
 
-                    <!-- Status Information -->
+                    <!-- Security Information -->
                     <div class="service-areas" style="margin-top: 50px;">
-                        <h3>Status usluge</h3>
-                        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <span
-                                    style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: var(--success-color);"></span>
-                                <span>Web stranica: <strong>Djelomično dostupna</strong></span>
+                        <h3>Sigurnost naše stranice</h3>
+                        <p>Zaštita vaših podataka i sigurnost naših sustava je naš prioritet:</p>
+
+                        <div style="margin-top: 20px;">
+                            <div
+                                style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 15px; padding: 15px; background: rgba(44, 74, 107, 0.1); border-radius: 8px;">
+                                <i class="fas fa-check-circle"
+                                    style="color: var(--success-color); margin-top: 3px;"></i>
+                                <div>
+                                    <h4 style="margin-bottom: 5px;">SSL enkripcija</h4>
+                                    <p style="margin: 0; font-size: 0.95rem;">Sva komunikacija je šifrirana koristeći
+                                        najnovije sigurnosne protokole.</p>
+                                </div>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <span
-                                    style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: var(--success-color);"></span>
-                                <span>Baza podataka: <strong>Operativna</strong></span>
+
+                            <div
+                                style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 15px; padding: 15px; background: rgba(44, 74, 107, 0.1); border-radius: 8px;">
+                                <i class="fas fa-check-circle"
+                                    style="color: var(--success-color); margin-top: 3px;"></i>
+                                <div>
+                                    <h4 style="margin-bottom: 5px;">Zaštita od napada</h4>
+                                    <p style="margin: 0; font-size: 0.95rem;">Implementirali smo napredne sigurnosne
+                                        mjere za zaštitu od DDoS i drugih napada.</p>
+                                </div>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <span
-                                    style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: var(--warning-color);"></span>
-                                <span>Server: <strong>U popravku</strong></span>
+
+                            <div
+                                style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 15px; padding: 15px; background: rgba(44, 74, 107, 0.1); border-radius: 8px;">
+                                <i class="fas fa-check-circle"
+                                    style="color: var(--success-color); margin-top: 3px;"></i>
+                                <div>
+                                    <h4 style="margin-bottom: 5px;">Redovne sigurnosne provjere</h4>
+                                    <p style="margin: 0; font-size: 0.95rem;">Provodimo redovite sigurnosne auditove i
+                                        ažuriramo naš sustav.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(44, 74, 107, 0.1); border-radius: 8px;">
+                                <i class="fas fa-check-circle"
+                                    style="color: var(--success-color); margin-top: 3px;"></i>
+                                <div>
+                                    <h4 style="margin-bottom: 5px;">GDPR usklađenost</h4>
+                                    <p style="margin: 0; font-size: 0.95rem;">Potpuno smo usklađeni s GDPR propisima za
+                                        zaštitu privatnosti.</p>
+                                </div>
                             </div>
                         </div>
-                        <p><small>Zadnja provjera: <span id="current-time"></span></small></p>
                     </div>
 
                     <!-- FAQ Section -->
                     <div class="web-faq" style="margin-top: 60px;">
-                        <h2>Često postavljana pitanja</h2>
+                        <h2>Sigurnosna pitanja</h2>
 
                         <div class="faq-item">
                             <button class="faq-question" aria-expanded="false">
-                                Što znači HTTP 500 greška?
+                                Razlika između 401 i 403 greške?
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="faq-answer" aria-hidden="true">
-                                <p>HTTP 500 je kod statusa koji označava "Internal Server Error". To znači da je došlo
-                                    do neočekivane greške na poslužitelju koja sprječava ispravno učitavanje stranice.
-                                    Greška nije uzrokovana vašim preglednikom ili mrežnim vezom.</p>
+                                <p><strong>401 Unauthorized:</strong> Zahtijeva autentifikaciju, ali ne znači da ćete
+                                    dobiti pristup čak i ako se prijavite.<br><br>
+                                    <strong>403 Forbidden:</strong> Server vas je prepoznao, ali vam odbija pristup bez
+                                    obzira na autentifikaciju. To znači da nemate potrebne dozvole.
+                                </p>
                             </div>
                         </div>
 
                         <div class="faq-item">
                             <button class="faq-question" aria-expanded="false">
-                                Koliko će trajati popravak?
+                                Što ako mislim da je ovo pogreška?
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="faq-answer" aria-hidden="true">
-                                <p>Većina problema se rješava unutar 30 minuta. Međutim, kompleksniji problemi mogu
-                                    zahtijevati više vremena. O vašem problemu automatski je obaviješten naš tehnički
-                                    tim koji radi na najbržem mogućem rješenju.</p>
+                                <p>Ako mislite da ste dobili 403 grešku pogrešno:<br>
+                                    1. Provjerite URL adresu koju ste upisali<br>
+                                    2. Osvježite stranicu (F5 ili Ctrl + F5)<br>
+                                    3. Pokušajte s drugim preglednikom<br>
+                                    4. Kontaktirajte našu tehničku podršku<br>
+                                    5. Nazovite nas na +385 12 345 6789</p>
                             </div>
                         </div>
 
                         <div class="faq-item">
                             <button class="faq-question" aria-expanded="false">
-                                Što mogu učiniti dok čekam?
+                                Kako zaštititi moju web stranicu?
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="faq-answer" aria-hidden="true">
-                                <p>1. Pokušajte osvježiti stranicu nakon nekoliko minuta<br>
-                                    2. Očistite predmemoriju preglednika<br>
-                                    3. Pristupite ostalim stranicama korištenjem navigacije<br>
-                                    4. Kontaktirajte nas ako se problem nastavi</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contact Methods -->
-                    <div class="additional-contact-methods">
-                        <h2 style="text-align: center; margin-bottom: 40px;">Kontaktirajte nas za hitnu pomoć</h2>
-                        <div class="contact-methods-grid">
-                            <div class="contact-method">
-                                <i class="fas fa-phone-alt"></i>
-                                <h3>Telefon</h3>
-                                <p><a href="tel:+385123456789">+385 12 345 6789</a></p>
-                                <p style="font-size: 0.9rem; margin-top: 10px;">Dostupno 24/7 za hitne slučajeve</p>
-                            </div>
-
-                            <div class="contact-method">
-                                <i class="fas fa-envelope"></i>
-                                <h3>Email</h3>
-                                <p><a href="mailto:support@lemgenda.hr">support@lemgenda.hr</a></p>
-                                <p style="font-size: 0.9rem; margin-top: 10px;">Odgovor u roku od 1 sata</p>
-                            </div>
-
-                            <div class="contact-method">
-                                <i class="fab fa-whatsapp"></i>
-                                <h3>WhatsApp</h3>
-                                <p><a href="https://wa.me/385123456789">+385 12 345 6789</a></p>
-                                <p style="font-size: 0.9rem; margin-top: 10px;">Brza komunikacija</p>
+                                <p>Za zaštitu vaše web stranice preporučujemo:<br>
+                                    • Redovite sigurnosne ažuriranje<br>
+                                    • SSL certifikat<br>
+                                    • Zaštitu od DDoS napada<br>
+                                    • Redovite backup podataka<br>
+                                    • Profesionalno održavanje<br>
+                                    Kontaktirajte nas za sigurnosne usluge.</p>
                             </div>
                         </div>
                     </div>
@@ -235,17 +265,14 @@
         <section class="cta-section">
             <div class="container">
                 <div class="cta-content">
-                    <h2>Želite ostati u toku?</h2>
-                    <p>Pratite nas na društvenim mrežama za najnovije informacije o statusu usluge i nadogradnjama.</p>
+                    <h2>Potrebna vam je sigurnosna analiza?</h2>
+                    <p>Naš tim sigurnosnih stručnjaka može provjeriti vašu web stranicu i preporučiti poboljšanja.</p>
                     <div class="cta-buttons">
-                        <a href="https://facebook.com/lemgenda" class="btn btn-primary" target="_blank">
-                            <i class="fab fa-facebook-f"></i> Facebook
+                        <a href="/kontakt" class="btn btn-primary">
+                            <i class="fas fa-shield-alt"></i> Sigurnosna provjera
                         </a>
-                        <a href="https://instagram.com/lemgenda" class="btn btn-secondary" target="_blank">
-                            <i class="fab fa-instagram"></i> Instagram
-                        </a>
-                        <a href="https://linkedin.com/company/lemgenda" class="btn btn-secondary" target="_blank">
-                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        <a href="/web-razvoj" class="btn btn-secondary">
+                            <i class="fas fa-code"></i> Sigurni web razvoj
                         </a>
                     </div>
                 </div>
@@ -285,7 +312,7 @@
 
             <div class="footer-bottom">
                 <p>&copy; 2024 Le Mgenda. Sva prava pridržana. | <a href="/privatnost">Politika privatnosti</a> | <a
-                        href="/uvjeti">Uvjeti korištenja</a></p>
+                        href="/sigurnost">Sigurnosna politika</a></p>
             </div>
         </div>
     </footer>
@@ -298,20 +325,6 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Update current time
-            function updateTime() {
-                const now = new Date();
-                const timeString = now.toLocaleTimeString('hr-HR', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit'
-                });
-                document.getElementById('current-time').textContent = timeString;
-            }
-
-            updateTime();
-            setInterval(updateTime, 1000);
-
             // Theme toggle
             const themeToggle = document.querySelector('.theme-toggle');
             const themeIcon = themeToggle.querySelector('i');
@@ -332,7 +345,7 @@
                 localStorage.setItem('theme', newTheme);
             });
 
-            // Mobile navigation
+            // Mobile navigation toggle
             const navToggle = document.querySelector('.nav-toggle');
             const navMenu = document.querySelector('.nav-menu');
 
@@ -381,33 +394,11 @@
             document.addEventListener('click', () => {
                 languageSwitcher.classList.remove('open');
             });
-
-            // Auto-refresh suggestion
-            setTimeout(() => {
-                const refreshBtn = document.querySelector('.btn-primary');
-                if (refreshBtn && refreshBtn.textContent.includes('Osvježi')) {
-                    refreshBtn.innerHTML = '<i class="fas fa-redo"></i> Pokušajte ponovno osvježiti';
-                }
-            }, 30000); // After 30 seconds
         });
 
         function changeLanguage(lang) {
             alert('Jezik promijenjen na: ' + (lang === 'hr' ? 'Hrvatski' : 'English'));
         }
-
-        // Attempt to automatically refresh the page once
-        let refreshAttempted = false;
-        function attemptRefresh() {
-            if (!refreshAttempted) {
-                refreshAttempted = true;
-                setTimeout(() => {
-                    window.location.reload();
-                }, 5000); // Try to refresh after 5 seconds
-            }
-        }
-
-        // Start auto-refresh attempt
-        setTimeout(attemptRefresh, 10000);
     </script>
 </body>
 

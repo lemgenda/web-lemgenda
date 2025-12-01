@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>500 - Interna greška poslužitelja | Le Mgenda</title>
-    <meta name="description"
-        content="Došlo je do interne greške poslužitelja. Pokušajte ponovno kasnije ili kontaktirajte nas.">
+    <title>400 - Neispravan zahtjev | Le Mgenda</title>
+    <meta name="description" content="Zahtjev koji je poslan poslužitelju je neispravan ili ne može se obraditi.">
 
     <!-- Fonts -->
     <link
@@ -77,23 +76,48 @@
     <!-- Main Content -->
     <main id="main-content">
         <!-- Hero Section -->
-        <section class="hero" style="background: linear-gradient(135deg, var(--primary-color) 0%, #4a0e0e 100%);">
+        <section class="hero" style="background: linear-gradient(135deg, var(--primary-color) 0%, #4a271a 100%);">
+            <div class="hero-animation">
+                <div class="die">
+                    <!-- D20 dice faces -->
+                    <div class="face face-1"></div>
+                    <div class="face face-2"></div>
+                    <div class="face face-3"></div>
+                    <div class="face face-4"></div>
+                    <div class="face face-5"></div>
+                    <div class="face face-6"></div>
+                    <div class="face face-7"></div>
+                    <div class="face face-8"></div>
+                    <div class="face face-9"></div>
+                    <div class="face face-10"></div>
+                    <div class="face face-11"></div>
+                    <div class="face face-12"></div>
+                    <div class="face face-13"></div>
+                    <div class="face face-14"></div>
+                    <div class="face face-15"></div>
+                    <div class="face face-16"></div>
+                    <div class="face face-17"></div>
+                    <div class="face face-18"></div>
+                    <div class="face face-19"></div>
+                    <div class="face face-20"></div>
+                </div>
+            </div>
             <div class="container">
                 <div class="hero-content">
                     <h1 class="hero-title">
-                        <span class="title-line">500</span>
-                        <span class="title-line">Interna greška poslužitelja</span>
+                        <span class="title-line">400</span>
+                        <span class="title-line">Neispravan zahtjev</span>
                     </h1>
                     <p class="hero-subtitle">
-                        Došlo je do neočekivane greške na našoj stranici. Naš tim je obaviješten i radi na rješavanju
-                        problema.
+                        Poslužitelj ne može obraditi vaš zahtjev zbog neispravne sintakse. Provjerite unos ili pokušajte
+                        drugačije.
                     </p>
                     <div class="hero-buttons">
                         <a href="/" class="btn btn-primary">
-                            <i class="fas fa-redo"></i> Osvježi stranicu
+                            <i class="fas fa-home"></i> Povratak na početnu
                         </a>
                         <a href="/kontakt" class="btn btn-secondary">
-                            <i class="fas fa-headset"></i> Hitna podrška
+                            <i class="fas fa-question-circle"></i> Trebate pomoć?
                         </a>
                     </div>
                 </div>
@@ -104,126 +128,76 @@
         <section class="content-page">
             <div class="container">
                 <div class="error-content">
-                    <h2>Što se dogodilo?</h2>
-                    <p style="font-size: 1.1rem; margin-bottom: 2rem;">
-                        Došlo je do interne greške poslužitelja (HTTP 500). Ova greška obično znači da postoji problem
-                        na našoj strani koji sprječava učitavanje stranice.
-                    </p>
+                    <h2>Mogući uzroci 400 greške</h2>
 
                     <div class="benefits-grid" style="margin-top: 30px;">
                         <div class="benefit-item">
-                            <i class="fas fa-cogs"></i>
-                            <h3>Radimo na popravku</h3>
-                            <p>Naš tehnički tim je automatski obaviješten i radi na brzom rješavanju problema.</p>
+                            <i class="fas fa-keyboard"></i>
+                            <h3>Neispravan unos</h3>
+                            <p>Provjerite da li ste ispravno upisali URL adresu. Izbjegavajte posebne znakove i razmake.
+                            </p>
                         </div>
 
                         <div class="benefit-item">
-                            <i class="fas fa-clock"></i>
-                            <h3>Pokušajte ponovno</h3>
-                            <p>Greška može biti privremena. Pokušajte osvježiti stranicu za nekoliko minuta.</p>
+                            <i class="fas fa-cookie-bite"></i>
+                            <h3>Problemi s kolačićima</h3>
+                            <p>Očistite kolačiće preglednika ili pokušajte u privatnom načinu rada.</p>
                         </div>
 
                         <div class="benefit-item">
                             <i class="fas fa-history"></i>
-                            <h3>Vratite se na sigurno</h3>
-                            <p>Koristite gumb "Povratak na početnu" ili navigaciju za pristup ostalim stranicama.</p>
+                            <h3>Zastarjela predmemorija</h3>
+                            <p>Osvježite predmemoriju preglednika (Ctrl + F5) ili pokušajte s drugim preglednikom.</p>
                         </div>
 
                         <div class="benefit-item">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <h3>Prijavite problem</h3>
-                            <p>Ako se problem nastavi, kontaktirajte našu tehničku podršku za brzu pomoć.</p>
+                            <i class="fas fa-link"></i>
+                            <h3>Oštećeni link</h3>
+                            <p>Link kojim ste došli možda sadrži greške. Koristite navigaciju ili početnu stranicu.</p>
                         </div>
-                    </div>
-
-                    <!-- Status Information -->
-                    <div class="service-areas" style="margin-top: 50px;">
-                        <h3>Status usluge</h3>
-                        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <span
-                                    style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: var(--success-color);"></span>
-                                <span>Web stranica: <strong>Djelomično dostupna</strong></span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <span
-                                    style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: var(--success-color);"></span>
-                                <span>Baza podataka: <strong>Operativna</strong></span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <span
-                                    style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: var(--warning-color);"></span>
-                                <span>Server: <strong>U popravku</strong></span>
-                            </div>
-                        </div>
-                        <p><small>Zadnja provjera: <span id="current-time"></span></small></p>
                     </div>
 
                     <!-- FAQ Section -->
                     <div class="web-faq" style="margin-top: 60px;">
-                        <h2>Često postavljana pitanja</h2>
+                        <h2>Rješenja za 400 grešku</h2>
 
                         <div class="faq-item">
                             <button class="faq-question" aria-expanded="false">
-                                Što znači HTTP 500 greška?
+                                Kako popraviti 400 Bad Request grešku?
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="faq-answer" aria-hidden="true">
-                                <p>HTTP 500 je kod statusa koji označava "Internal Server Error". To znači da je došlo
-                                    do neočekivane greške na poslužitelju koja sprječava ispravno učitavanje stranice.
-                                    Greška nije uzrokovana vašim preglednikom ili mrežnim vezom.</p>
+                                <p>1. <strong>Osvježite stranicu</strong> (Ctrl + F5)<br>
+                                    2. <strong>Očistite predmemoriju preglednika</strong><br>
+                                    3. <strong>Izbrišite kolačiće stranice</strong><br>
+                                    4. <strong>Provjerite URL adresu</strong> za greške<br>
+                                    5. <strong>Pokušajte s drugim preglednikom</strong></p>
                             </div>
                         </div>
 
                         <div class="faq-item">
                             <button class="faq-question" aria-expanded="false">
-                                Koliko će trajati popravak?
+                                Je li greška na mojoj strani?
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="faq-answer" aria-hidden="true">
-                                <p>Većina problema se rješava unutar 30 minuta. Međutim, kompleksniji problemi mogu
-                                    zahtijevati više vremena. O vašem problemu automatski je obaviješten naš tehnički
-                                    tim koji radi na najbržem mogućem rješenju.</p>
+                                <p>400 greška obično znači da je problem u zahtjevu koji šalje vaš preglednik. Međutim,
+                                    to ne znači nužno da ste vi krivi - može biti problem s linkom, oštećenom
+                                    predmemorijom ili zastarjelim kolačićem.</p>
                             </div>
                         </div>
 
                         <div class="faq-item">
                             <button class="faq-question" aria-expanded="false">
-                                Što mogu učiniti dok čekam?
+                                Trebam li kontaktirati podršku?
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="faq-answer" aria-hidden="true">
-                                <p>1. Pokušajte osvježiti stranicu nakon nekoliko minuta<br>
-                                    2. Očistite predmemoriju preglednika<br>
-                                    3. Pristupite ostalim stranicama korištenjem navigacije<br>
-                                    4. Kontaktirajte nas ako se problem nastavi</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contact Methods -->
-                    <div class="additional-contact-methods">
-                        <h2 style="text-align: center; margin-bottom: 40px;">Kontaktirajte nas za hitnu pomoć</h2>
-                        <div class="contact-methods-grid">
-                            <div class="contact-method">
-                                <i class="fas fa-phone-alt"></i>
-                                <h3>Telefon</h3>
-                                <p><a href="tel:+385123456789">+385 12 345 6789</a></p>
-                                <p style="font-size: 0.9rem; margin-top: 10px;">Dostupno 24/7 za hitne slučajeve</p>
-                            </div>
-
-                            <div class="contact-method">
-                                <i class="fas fa-envelope"></i>
-                                <h3>Email</h3>
-                                <p><a href="mailto:support@lemgenda.hr">support@lemgenda.hr</a></p>
-                                <p style="font-size: 0.9rem; margin-top: 10px;">Odgovor u roku od 1 sata</p>
-                            </div>
-
-                            <div class="contact-method">
-                                <i class="fab fa-whatsapp"></i>
-                                <h3>WhatsApp</h3>
-                                <p><a href="https://wa.me/385123456789">+385 12 345 6789</a></p>
-                                <p style="font-size: 0.9rem; margin-top: 10px;">Brza komunikacija</p>
+                                <p>Kontaktirajte nas ako:<br>
+                                    • Greška se javlja na više preglednika<br>
+                                    • Ne možete pristupiti bilo kojoj stranici naše web stranice<br>
+                                    • Imate hitan posao ili narudžbu<br>
+                                    • Greška traje duže od 24 sata</p>
                             </div>
                         </div>
                     </div>
@@ -235,17 +209,17 @@
         <section class="cta-section">
             <div class="container">
                 <div class="cta-content">
-                    <h2>Želite ostati u toku?</h2>
-                    <p>Pratite nas na društvenim mrežama za najnovije informacije o statusu usluge i nadogradnjama.</p>
+                    <h2>Potrebna tehnička podrška?</h2>
+                    <p>Naš tim je tu da vam pomogne s bilo kojim tehničkim problemom.</p>
                     <div class="cta-buttons">
-                        <a href="https://facebook.com/lemgenda" class="btn btn-primary" target="_blank">
-                            <i class="fab fa-facebook-f"></i> Facebook
+                        <a href="/kontakt" class="btn btn-primary">
+                            <i class="fas fa-headset"></i> Kontaktirajte podršku
                         </a>
-                        <a href="https://instagram.com/lemgenda" class="btn btn-secondary" target="_blank">
-                            <i class="fab fa-instagram"></i> Instagram
+                        <a href="tel:+385123456789" class="btn btn-secondary">
+                            <i class="fas fa-phone-alt"></i> Nazovite nas
                         </a>
-                        <a href="https://linkedin.com/company/lemgenda" class="btn btn-secondary" target="_blank">
-                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        <a href="mailto:support@lemgenda.hr" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Pošaljite email
                         </a>
                     </div>
                 </div>
@@ -284,8 +258,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2024 Le Mgenda. Sva prava pridržana. | <a href="/privatnost">Politika privatnosti</a> | <a
-                        href="/uvjeti">Uvjeti korištenja</a></p>
+                <p>&copy; 2024 Le Mgenda. Sva prava pridržana.</p>
             </div>
         </div>
     </footer>
@@ -298,20 +271,6 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Update current time
-            function updateTime() {
-                const now = new Date();
-                const timeString = now.toLocaleTimeString('hr-HR', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit'
-                });
-                document.getElementById('current-time').textContent = timeString;
-            }
-
-            updateTime();
-            setInterval(updateTime, 1000);
-
             // Theme toggle
             const themeToggle = document.querySelector('.theme-toggle');
             const themeIcon = themeToggle.querySelector('i');
@@ -332,7 +291,7 @@
                 localStorage.setItem('theme', newTheme);
             });
 
-            // Mobile navigation
+            // Mobile navigation toggle
             const navToggle = document.querySelector('.nav-toggle');
             const navMenu = document.querySelector('.nav-menu');
 
@@ -381,33 +340,11 @@
             document.addEventListener('click', () => {
                 languageSwitcher.classList.remove('open');
             });
-
-            // Auto-refresh suggestion
-            setTimeout(() => {
-                const refreshBtn = document.querySelector('.btn-primary');
-                if (refreshBtn && refreshBtn.textContent.includes('Osvježi')) {
-                    refreshBtn.innerHTML = '<i class="fas fa-redo"></i> Pokušajte ponovno osvježiti';
-                }
-            }, 30000); // After 30 seconds
         });
 
         function changeLanguage(lang) {
             alert('Jezik promijenjen na: ' + (lang === 'hr' ? 'Hrvatski' : 'English'));
         }
-
-        // Attempt to automatically refresh the page once
-        let refreshAttempted = false;
-        function attemptRefresh() {
-            if (!refreshAttempted) {
-                refreshAttempted = true;
-                setTimeout(() => {
-                    window.location.reload();
-                }, 5000); // Try to refresh after 5 seconds
-            }
-        }
-
-        // Start auto-refresh attempt
-        setTimeout(attemptRefresh, 10000);
     </script>
 </body>
 
