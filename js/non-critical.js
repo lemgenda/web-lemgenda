@@ -643,7 +643,7 @@ class NonCriticalApp {
                         <div class="form-group">
                             <label class="checkbox-label">
                                 <input type="checkbox" id="newsletter-privacy" name="privacy" required>
-                                <span data-translate="newsletter.privacy">Slažem se s politikom privatnosti</span>
+                                <span data-translate="newsletter.privacy" style="position: absolute; margin-top: 20px;">Slažem se s politikom privatnosti</span>
                             </label>
                             <div class="error-message" id="newsletter-privacy-error"></div>
                         </div>
