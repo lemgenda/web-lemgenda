@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="hr" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Stranica nije pronađena | Le Mgenda</title>
+    <meta name="description"
+        content="Tražena stranica ne postoji. Vratite se na početnu stranicu ili kontaktirajte nas.">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Michroma&family=Noto+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Critical CSS -->
+    <link rel="stylesheet" href="/css/critical.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Preskoči na glavni sadržaj</a>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="/" class="logo">
+                    <img src="/logo.png" alt="Le Mgenda Logo" width="120" height="40">
+                </a>
+
+                <!-- Navigation -->
+                <nav class="nav" aria-label="Glavna navigacija">
+                    <button class="nav-toggle" aria-expanded="false" aria-label="Navigacijski izbornik">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <ul class="nav-menu">
+                        <li><a href="/" class="nav-link">Početna</a></li>
+                        <li><a href="/web-razvoj" class="nav-link">Web Razvoj</a></li>
+                        <li><a href="/seo-optimizacija" class="nav-link">SEO Optimizacija</a></li>
+                        <li><a href="/graficki-dizajn" class="nav-link">Grafički Dizajn</a></li>
+                        <li><a href="/o-nama" class="nav-link">O Nama</a></li>
+                        <li><a href="/kontakt" class="nav-link">Kontakt</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Header Controls -->
+                <div class="header-controls">
+                    <!-- Language Switcher -->
+                    <div class="language-switcher">
+                        <button class="language-btn" aria-expanded="false" aria-label="Odabir jezika">
+                            HR <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </button>
+                        <ul class="language-dropdown">
+                            <li><button onclick="changeLanguage('hr')">Hrvatski</button></li>
+                            <li><button onclick="changeLanguage('en')">English</button></li>
+                        </ul>
+                    </div>
+
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" aria-label="Promijeni temu">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-animation">
+                <div class="die">
+                    <!-- D20 dice faces -->
+                    <div class="face face-1"></div>
+                    <div class="face face-2"></div>
+                    <div class="face face-3"></div>
+                    <div class="face face-4"></div>
+                    <div class="face face-5"></div>
+                    <div class="face face-6"></div>
+                    <div class="face face-7"></div>
+                    <div class="face face-8"></div>
+                    <div class="face face-9"></div>
+                    <div class="face face-10"></div>
+                    <div class="face face-11"></div>
+                    <div class="face face-12"></div>
+                    <div class="face face-13"></div>
+                    <div class="face face-14"></div>
+                    <div class="face face-15"></div>
+                    <div class="face face-16"></div>
+                    <div class="face face-17"></div>
+                    <div class="face face-18"></div>
+                    <div class="face face-19"></div>
+                    <div class="face face-20"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="title-line">404</span>
+                        <span class="title-line">Stranica nije pronađena</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Stranica koju tražite ne postoji ili je premještena. Provjerite URL adresu ili koristite gumbe
+                        ispod za navigaciju.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="/" class="btn btn-primary">
+                            <i class="fas fa-home"></i> Povratak na početnu
+                        </a>
+                        <a href="/kontakt" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Kontaktirajte nas
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Section -->
+        <section class="content-page">
+            <div class="container">
+                <div class="error-content">
+                    <h2>Što možete učiniti sljedeće?</h2>
+
+                    <div class="benefits-grid" style="margin-top: 30px;">
+                        <div class="benefit-item">
+                            <i class="fas fa-search"></i>
+                            <h3>Provjerite URL</h3>
+                            <p>Provjerite je li URL adresa koju ste unijeli točna. Možda postoji tipfeljer ili razmak.
+                            </p>
+                        </div>
+
+                        <div class="benefit-item">
+                            <i class="fas fa-sitemap"></i>
+                            <h3>Koristite navigaciju</h3>
+                            <p>Koristite gornju navigacijsku traku za pronalazak željene stranice.</p>
+                        </div>
+
+                        <div class="benefit-item">
+                            <i class="fas fa-home"></i>
+                            <h3>Vratite se na početnu</h3>
+                            <p>Povratak na početnu stranicu i odatle pronađite željeni sadržaj.</p>
+                        </div>
+
+                        <div class="benefit-item">
+                            <i class="fas fa-headset"></i>
+                            <h3>Kontaktirajte nas</h3>
+                            <p>Ako mislite da ovo predstavlja pogrešku na stranici, javite nam se.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Section -->
+                    <div class="web-faq" style="margin-top: 60px;">
+                        <h2>Često postavljana pitanja</h2>
+
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                Zašto sam dobio 404 grešku?
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer" aria-hidden="true">
+                                <p>404 greška znači da server nije mogao pronaći datoteku ili stranicu koju tražite. To
+                                    može biti zbog promijenjenog URL-a, uklonjene stranice ili netočno upisane adrese.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                Jesu li podaci na stranici izgubljeni?
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer" aria-hidden="true">
+                                <p>Ne, 404 greška ne znači da su podaci izgubljeni. Obično znači da je stranica
+                                    premještena ili da ste unijeli netočan URL. Vaši podaci i ostale stranice su i dalje
+                                    dostupne.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                Kako pronaći stranicu koja je premještena?
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer" aria-hidden="true">
+                                <p>Koristite navigacijsku traku ili povratak na početnu stranicu. Također možete
+                                    koristiti tražilicu na našoj stranici ako je dostupna ili nas kontaktirati za pomoć.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Treba vam pomoć s nečim drugim?</h2>
+                    <p>Naš tim je tu da vam pomogne s web razvojem, SEO optimizacijom i grafičkim dizajnom.</p>
+                    <div class="cta-buttons">
+                        <a href="/web-razvoj" class="btn btn-primary">
+                            <i class="fas fa-code"></i> Web Razvoj
+                        </a>
+                        <a href="/seo-optimizacija" class="btn btn-secondary">
+                            <i class="fas fa-chart-line"></i> SEO Optimizacija
+                        </a>
+                        <a href="/kontakt" class="btn btn-secondary">
+                            <i class="fas fa-comments"></i> Besplatna konsultacija
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="/logo.png" alt="Le Mgenda Logo">
+                    <p>Vodeći pružatelj digitalnih usluga u Hrvatskoj, specijaliziran za web razvoj, SEO optimizaciju i
+                        grafički dizajn.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Brzi linkovi</h3>
+                    <ul>
+                        <li><a href="/">Početna</a></li>
+                        <li><a href="/web-razvoj">Web Razvoj</a></li>
+                        <li><a href="/seo-optimizacija">SEO Optimizacija</a></li>
+                        <li><a href="/graficki-dizajn">Grafički Dizajn</a></li>
+                        <li><a href="/o-nama">O Nama</a></li>
+                        <li><a href="/kontakt">Kontakt</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Kontaktirajte nas</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Zagreb, Hrvatska</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+385123456789">+385 12 345 6789</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@lemgenda.hr">info@lemgenda.hr</a></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Le Mgenda. Sva prava pridržana.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Povratak na vrh">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Error page specific script - simple version without external dependencies
+        document.addEventListener('DOMContentLoaded', function () {
+            // Theme toggle
+            const themeToggle = document.querySelector('.theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+            const html = document.documentElement;
+
+            // Check for saved theme or prefer-color-scheme
+            const savedTheme = localStorage.getItem('theme') ||
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+            html.setAttribute('data-theme', savedTheme);
+            themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+                html.setAttribute('data-theme', newTheme);
+                themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                localStorage.setItem('theme', newTheme);
+            });
+
+            // Mobile navigation toggle
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            navToggle.addEventListener('click', () => {
+                const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', !expanded);
+                navMenu.classList.toggle('active');
+            });
+
+            // FAQ functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const expanded = question.getAttribute('aria-expanded') === 'true';
+
+                    question.setAttribute('aria-expanded', !expanded);
+                    answer.setAttribute('aria-hidden', expanded);
+                });
+            });
+
+            // Back to top button
+            const backToTop = document.querySelector('.back-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Language switcher
+            const languageSwitcher = document.querySelector('.language-switcher');
+            const languageBtn = document.querySelector('.language-btn');
+
+            languageBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                languageSwitcher.classList.toggle('open');
+            });
+
+            // Close language dropdown when clicking outside
+            document.addEventListener('click', () => {
+                languageSwitcher.classList.remove('open');
+            });
+        });
+
+        function changeLanguage(lang) {
+            // In a real implementation, this would redirect to the language-specific version
+            // For now, just show an alert
+            alert('Jezik promijenjen na: ' + (lang === 'hr' ? 'Hrvatski' : 'English'));
+        }
+    </script>
+</body>
+
+</html>
