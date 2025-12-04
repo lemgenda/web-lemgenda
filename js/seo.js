@@ -220,8 +220,8 @@ class EnhancedStructuredData {
             "@type": "Organization",
             "name": "Lemgenda",
             "description": "Professional web development, SEO optimization, logo design, and IT services in Sisak, Croatia.",
-            "url": "https://lemgenda.com",
-            "logo": "https://lemgenda.com/images/lemgenda-logo.svg",
+            "url": "https://lemgenda.hr",
+            "logo": "https://lemgenda.hr/images/lemgenda-logo.svg",
             "sameAs": [
                 "https://www.facebook.com/lemgenda",
                 "https://www.linkedin.com/company/lemgenda"
@@ -251,11 +251,11 @@ class EnhancedStructuredData {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Lemgenda",
-            "url": "https://lemgenda.com",
+            "url": "https://lemgenda.hr",
             "description": "Professional web development and IT services in Sisak, Croatia",
             "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://lemgenda.com/search?q={search_term_string}",
+                "target": "https://lemgenda.hr/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
             },
             "inLanguage": ["hr", "en"]
@@ -270,8 +270,8 @@ class EnhancedStructuredData {
             "@type": "LocalBusiness",
             "name": "Lemgenda",
             "description": "Professional web development, SEO optimization, logo design, and IT services in Sisak, Croatia.",
-            "url": "https://lemgenda.com",
-            "logo": "https://lemgenda.com/images/lemgenda-logo.svg",
+            "url": "https://lemgenda.hr",
+            "logo": "https://lemgenda.hr/images/lemgenda-logo.svg",
             "telephone": "+385-95-383-1325",
             "email": "lemgenda.obrt@gmail.com",
             "address": {
@@ -313,7 +313,7 @@ class EnhancedStructuredData {
                 "areaServed": "Croatia",
                 "availableChannel": {
                     "@type": "ServiceChannel",
-                    "serviceUrl": "https://lemgenda.com"
+                    "serviceUrl": "https://lemgenda.hr"
                 }
             };
 
@@ -332,7 +332,7 @@ class EnhancedStructuredData {
             "isPartOf": {
                 "@type": "WebSite",
                 "name": "Lemgenda",
-                "url": "https://lemgenda.com"
+                "url": "https://lemgenda.hr"
             }
         };
 
@@ -373,7 +373,7 @@ class WebRazvojStructuredData {
             "provider": {
                 "@type": "Organization",
                 "name": "Lemgenda",
-                "url": "https://lemgenda.com"
+                "url": "https://lemgenda.hr"
             },
             "areaServed": {
                 "@type": "GeoCircle",
@@ -479,19 +479,19 @@ class WebRazvojStructuredData {
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Početna",
-                    "item": "https://lemgenda.com"
+                    "item": "https://lemgenda.hr"
                 },
                 {
                     "@type": "ListItem",
                     "position": 2,
                     "name": "Web Usluge",
-                    "item": "https://lemgenda.com/web-usluge/"
+                    "item": "https://lemgenda.hr/web-usluge/"
                 },
                 {
                     "@type": "ListItem",
                     "position": 3,
                     "name": "Web Razvoj",
-                    "item": "https://lemgenda.com/web-usluge/web-razvoj.html"
+                    "item": "https://lemgenda.hr/web-usluge/web-razvoj.html"
                 }
             ]
         };
@@ -619,9 +619,9 @@ class MetaTagManager {
 
     generateHreflangTags() {
         const languages = [
-            { lang: 'en', url: 'https://lemgenda.com/en/' },
-            { lang: 'hr', url: 'https://lemgenda.com/' },
-            { lang: 'x-default', url: 'https://lemgenda.com/' }
+            { lang: 'en', url: 'https://lemgenda.hr/en/' },
+            { lang: 'hr', url: 'https://lemgenda.hr/' },
+            { lang: 'x-default', url: 'https://lemgenda.hr/' }
         ];
 
         // Get current page path without language prefix
@@ -642,9 +642,9 @@ class MetaTagManager {
             let pageUrl = url;
             if (currentPath !== '/') {
                 if (lang === 'en') {
-                    pageUrl = 'https://lemgenda.com' + enPath;
+                    pageUrl = 'https://lemgenda.hr' + enPath;
                 } else {
-                    pageUrl = 'https://lemgenda.com' + hrPath;
+                    pageUrl = 'https://lemgenda.hr' + hrPath;
                 }
             }
 
@@ -659,7 +659,7 @@ class MetaTagManager {
     }
 
     generateCanonicalTag() {
-        const canonicalUrl = 'https://lemgenda.com' + window.location.pathname;
+        const canonicalUrl = 'https://lemgenda.hr' + window.location.pathname;
 
         if (!document.querySelector('link[rel="canonical"]')) {
             const link = document.createElement('link');
@@ -855,7 +855,7 @@ class SEOInitializer {
             'og:description': document.querySelector('meta[name="description"]')?.content || '',
             'og:url': window.location.href,
             'og:type': 'website',
-            'og:image': 'https://lemgenda.com/images/lemgenda-og-image.jpg',
+            'og:image': 'https://lemgenda.hr/images/lemgenda-og-image.jpg',
             'og:locale': document.documentElement.lang === 'hr' ? 'hr_HR' : 'en_US'
         };
 
@@ -873,7 +873,7 @@ class SEOInitializer {
             'twitter:card': 'summary_large_image',
             'twitter:title': document.title,
             'twitter:description': document.querySelector('meta[name="description"]')?.content || '',
-            'twitter:image': 'https://lemgenda.com/images/lemgenda-twitter-image.jpg'
+            'twitter:image': 'https://lemgenda.hr/images/lemgenda-twitter-image.jpg'
         };
 
         Object.entries(twitterTags).forEach(([name, content]) => {

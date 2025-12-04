@@ -78,8 +78,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ /$1 [L,R=301]
 
 # Redirect old URLs (example - adjust as needed)
-Redirect 301 /old-page.html https://lemgenda.com/new-page.html
-Redirect 301 /services/ https://lemgenda.com/web-usluge/
+Redirect 301 /old-page.html https://lemgenda.hr/new-page.html
+Redirect 301 /services/ https://lemgenda.hr/web-usluge/
 
 # Custom 404 page
 ErrorDocument 404 /404.html

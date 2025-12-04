@@ -4,32 +4,32 @@
 
     <!-- Homepage - Highest Priority -->
     <url>
-        <loc>https://lemgenda.com/</loc>
+        <loc>https://lemgenda.hr/</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
-        <xhtml:link rel="alternate" hreflang="hr" href="https://lemgenda.com/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://lemgenda.com/en/"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://lemgenda.com/"/>
+        <xhtml:link rel="alternate" hreflang="hr" href="https://lemgenda.hr/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lemgenda.hr/en/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://lemgenda.hr/"/>
     </url>
 
     <!-- Main Pages -->
     <url>
-        <loc>https://lemgenda.com/stranice/kontakt.html</loc>
+        <loc>https://lemgenda.hr/stranice/kontakt.html</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
-        <loc>https://lemgenda.com/stranice/besplatna-ponuda.html</loc>
+        <loc>https://lemgenda.hr/stranice/besplatna-ponuda.html</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
-        <loc>https://lemgenda.com/stranice/pregled-radova.html</loc>
+        <loc>https://lemgenda.hr/stranice/pregled-radova.html</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -37,14 +37,14 @@
 
     <!-- Legal Pages -->
     <url>
-        <loc>https://lemgenda.com/stranice/politika-privatnosti.html</loc>
+        <loc>https://lemgenda.hr/stranice/politika-privatnosti.html</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
 
     <url>
-        <loc>https://lemgenda.com/stranice/uvjeti-koristenja.html</loc>
+        <loc>https://lemgenda.hr/stranice/uvjeti-koristenja.html</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
@@ -52,28 +52,28 @@
 
     <!-- Web Services Pages -->
     <url>
-        <loc>https://lemgenda.com/web-usluge/web-razvoj.html</loc>
+        <loc>https://lemgenda.hr/web-usluge/web-razvoj.html</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://lemgenda.com/web-usluge/e-commerce-razvoj.html</loc>
+        <loc>https://lemgenda.hr/web-usluge/e-commerce-razvoj.html</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://lemgenda.com/web-usluge/seo.html</loc>
+        <loc>https://lemgenda.hr/web-usluge/seo.html</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://lemgenda.com/web-usluge/logo-design.html</loc>
+        <loc>https://lemgenda.hr/web-usluge/logo-design.html</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -81,28 +81,28 @@
 
     <!-- Other Services Pages -->
     <url>
-        <loc>https://lemgenda.com/usluge/prilagodeni-razvoj.html</loc>
+        <loc>https://lemgenda.hr/usluge/prilagodeni-razvoj.html</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
-        <loc>https://lemgenda.com/usluge/ciscenje-smartphona.html</loc>
+        <loc>https://lemgenda.hr/usluge/ciscenje-smartphona.html</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
 
     <url>
-        <loc>https://lemgenda.com/usluge/ciscenje-racunala.html</loc>
+        <loc>https://lemgenda.hr/usluge/ciscenje-racunala.html</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
 
     <url>
-        <loc>https://lemgenda.com/usluge/os-instalacija.html</loc>
+        <loc>https://lemgenda.hr/usluge/os-instalacija.html</loc>
         <lastmod>2024-12-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>

@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://lemgenda.com/sitemap.xml
+Sitemap: https://lemgenda.hr/sitemap.xml
 
 # Allow all essential pages
 Allow: /css/
