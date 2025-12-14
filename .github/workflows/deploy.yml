@@ -1,0 +1,44 @@
+name: Deploy to lemgenda.hr
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: List files (for debugging)
+      run: ls -la
+
+    - name: Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        port: 21
+        protocol: ftp
+        local-dir: ./
+        server-dir: ${{ secrets.FTP_REMOTE_PATH || '/public_html/' }}
+        # Add these for cPanel compatibility:
+        dangerous-clean-slate: false
+        state-name: .ftp-deploy-sync-state.json
+        exclude: |
+          **/.git*
+          **/.github*
+          **/node_modules
+          **/*.md
+          README.md
+          .gitignore
+          .env*
+          .env.example
+          docker-compose.yml
+          composer.lock
+          package-lock.json
+
