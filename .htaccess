@@ -6,7 +6,6 @@ RewriteCond %{HTTP_HOST} !^www\.lemgenda\.hr$ [NC]
 RewriteRule ^(.*)$ https://www.lemgenda.hr/$1 [L,R=301]
 
 # ========== EXCLUDE ERROR PAGES AND ASSETS ==========
-# Don't rewrite error pages, assets, or existing files/directories
 RewriteCond %{REQUEST_URI} ^/(400|401|402|403|404|500)\.html$ [NC,OR]
 RewriteCond %{REQUEST_URI} \.(css|js|jpg|jpeg|png|gif|ico|svg|webp|woff|woff2|ttf|eot|mp4|webm|mp3|pdf|json)$ [NC,OR]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -14,13 +13,11 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
 # ========== REDIRECT .HTML REQUESTS TO CLEAN URLs ==========
-# Redirect ANY .html requests to clean URLs
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L,NE]
 
 # ========== MAP CLEAN URLs TO ACTUAL FILES ==========
-
-# 1. Root pages (index, error pages already handled)
+# 1. Root pages
 RewriteRule ^index$ index.html [L]
 
 # 2. Stranice pages
@@ -41,24 +38,17 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{DOCUMENT_ROOT}/web-usluge/$1.html -f
 RewriteRule ^web-usluge/([^.]+)$ /web-usluge/$1.html [L]
 
-# ========== SPECIFIC PAGE REDIRECTS (Optional but good for SEO) ==========
-# These create nice clean URLs without directory structure
-
-# Web services - clean URLs
+# ========== SPECIFIC PAGE REDIRECTS ==========
 RewriteRule ^e-commerce-razvoj$ /web-usluge/e-commerce-razvoj.html [L]
 RewriteRule ^seo$ /web-usluge/seo.html [L]
 RewriteRule ^sem$ /web-usluge/sem.html [L]
 RewriteRule ^web-razvoj$ /web-usluge/web-razvoj.html [L]
 RewriteRule ^logo-design$ /web-usluge/logo-design.html [L]
 RewriteRule ^pristupacnost$ /web-usluge/pristupacnost.html [L]
-
-# Other services
 RewriteRule ^ciscenje-racunala$ /usluge/ciscenje-racunala.html [L]
 RewriteRule ^ciscenje-smartphona$ /usluge/ciscenje-smartphona.html [L]
 RewriteRule ^os-instalacija$ /usluge/os-instalacija.html [L]
 RewriteRule ^prilagodeni-razvoj$ /usluge/prilagodeni-razvoj.html [L]
-
-# Content pages
 RewriteRule ^kontakt$ /stranice/kontakt.html [L]
 RewriteRule ^besplatna-ponuda$ /stranice/besplatna-ponuda.html [L]
 RewriteRule ^pregled-radova$ /stranice/pregled-radova.html [L]
@@ -67,11 +57,8 @@ RewriteRule ^uvjeti-koristenja$ /stranice/uvjeti-koristenja.html [L]
 RewriteRule ^contact-success$ /stranice/contact-success.html [L]
 
 # ========== CANONICAL URL - TRAILING SLASHES ==========
-# Add trailing slash for directories
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^(.*[^/])$ /$1/ [L,R=301]
-
-# Remove trailing slash for files
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ /$1 [L,R=301]
 
@@ -83,11 +70,16 @@ ErrorDocument 403 /403.html
 ErrorDocument 404 /404.html
 ErrorDocument 500 /500.html
 
-# ========== REST OF YOUR CONFIGURATION ==========
-# SECURITY HEADERS
+# ========== SECURITY HEADERS ==========
 <IfModule mod_headers.c>
+    # ========== SCREENSHOT TOOL COMPATIBILITY ==========
+    # ALLOW iframe embedding from ALL GitHub Pages domains
+    Header always set Content-Security-Policy "frame-ancestors 'self' https://lemgenda.github.io https://*.github.io http://localhost:5173//image-lemgendizer-old//;"
+
+    Header always set X-Frame-Options "ALLOW-FROM https://lemgenda.github.io https://*.github.io http://localhost:5173"
+    
+    # ========== OTHER SECURITY HEADERS ==========
     Header always set X-Content-Type-Options "nosniff"
-    Header always set X-Frame-Options "DENY"
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
